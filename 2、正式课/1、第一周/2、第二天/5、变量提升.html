@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        变量提升：是浏览器的一种运行机制
+        在代码执行之前,浏览器会对当前作用域里带var和带function的变量进行提前的声明(创建变量)和定义(赋值)，带var的只声明不定义，daifunction既声明有定义
+        */
+
+        //  console.log(a);// un  
+        //  var a = 12;
+        //  console.log(a); // 12
+        // // 画图
+
+        /* 
+        a
+        */
+        // console.log(a); // un
+        // console.log(b);  // 报错
+        // var a = b = c = 100; // var a = 100;b =100;c= 100;
+
+        // window.b = 100 // b = 100
+        // window.c = 100 // c = 100
+
+        // b = 12; // 相当于window.b = 12;
+        // var b = 12; // 虽然也会给window增加键值对，但是还有变量提升
+
+        // var a = b = c = 12; // 等价于 var a = 12;b=12;c=12;
+        // var a,b,c = 12; // 等价于var a;var b;var c = 12;
+
+        // var a = 12,b = 13, c = 14; // var a = 12; var b = 13; var c = 14;
+
+
+        /* 
+         a,
+         b,
+         c =100  
+        */
+        // console.log(a); // un
+        // console.log(b); // un
+        // console.log(c); // un
+        // var a,b,c = 100;
+        // console.log(a); //  un
+        // console.log(b); //  un
+        // console.log(c); //  100
+
+        /* 
+        fn = f
+        */
+        // fn();
+        // function fn() {
+        //     console.log(num);
+        //     var num = 12;
+        // }
+        // console.log(num)
+        // 画图
+
+
+        /* 
+        name = 'erYa'
+        fn   f
+        */
+       // 在当前作用域下，如果变量名重复，就不需要重新声明
+        // var name = 'erYa'; 
+        // function fn(name){
+        //     /* 
+        //     形成私有作用域
+        //     形参赋值
+        //     变量提升
+        //     代码执行
+        //     作用域是否销毁
+        //     name = 'erYa' '15'
+        //     */
+        //     console.log(name); // f 'erYa'
+        //     // function name(){}
+        //     var name = '15';
+        //     console.log(name); // f '15'
+        // };
+        // fn(name);
+
+
+
+        /* 
+        fn  f3
+        */
+        // 等号右边的不进行变量提升
+        // fn(); // 5
+        // function fn() {console.log(1)};
+        // fn(); // 5
+        // function fn() {console.log(2)};
+        // fn(); // 5
+        // var fn = function () {console.log(3)};
+        // fn(); // 3
+        // function fn() {console.log(4)};
+        // fn(); // 3
+        // function fn() {console.log(5)};
+
+
+
+    </script>
+</body>
+
+</html>

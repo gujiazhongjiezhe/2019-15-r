@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            我们要探究的是当我们打开一个页面的时候，代码是怎样执行的
+            全局的作用域(全局的栈内存)，私有作用域(私有的栈内存)
+
+            全局作用域：
+            当我们打开一个页面的时候，浏览器就会形成一个全局的作用域，还会在全局作用域下生成一个大对象window
+            使用window上的值得时候，window.可以省略
+            全局作用域的作用：1、为代码回字形提供环境；2、存储变量和基本值
+        */
+        //    console.log(window)
+        // //    alert(111)
+        // //    window.alert(333)
+        //    Number()
+        //    console.log(window.console)
+
+        /* 
+        全局变量：在全部作用域下创建的变量就是全局变量
+        var/function/let/const/import/class
+        */
+    //    let a = 12;
+    //    var b = 13;
+    //    function fn(){}
+
+    // 1、var和function在全局作用下创建的变量会给window增加键值对，属性名是变量名，属性值是当前变量名所代表的值(let和const不会)
+        // var a = 12;
+        // let b = 13;
+        // function fn(){}
+        // let f = function(){};
+        // console.log(window.a); // 12
+        // console.log(window.b); // undefiend
+        // console.log(window.fn); //  f
+        // console.log(window.f); // undefined
+
+    // 2、var和function创建的变量可以重复创建，但是let和const不可以
+    // var a = 12;
+    // var a = 13;
+
+    // let b = 14;
+    // let b =15; //报错
+
+    // let c = 12;
+    // var c = 13; // 报错
+
+    // 3、var和function有变量提升，let和const没有
+
+    // 4、const创建常量(他代表的值不能被修改)，而且创建的时候必须给const定义的常量赋值
+    // const a = 12;
+    // const b; // 报错
+
+    </script>
+</body>
+</html>

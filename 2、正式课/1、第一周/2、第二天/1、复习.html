@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        版本控制系统：
+        1、git：分布式
+        2、svn：集中式
+
+        git分为三个区：
+            工作区：编辑代码的
+            暂存区：暂时代码的
+            历史区：生成历史版本
+        
+            配置全局的git信息
+            git config -l
+            git config --global user.name 'xxxxx'
+            git config --global user.email 'xxxxx'
+        
+            创建本地仓库，完成版本控制
+            git init(.git文件，存储仓库信息的)
+            git add -A: 把所有修改的文件提交到暂存区
+            git add . : 把所有修改的文件提交到暂存区
+            git add 文件名 ：把指定的修改的文件提交到暂存区
+            git status:查看文件提交状态(红色在工作区，绿色在暂存区，如果没有颜色，在历史区)
+            clear：清屏
+
+            git commit -m'注释'：把暂存区的代码提交到历史区，注释就是你当前次提交的描述信息
+            git log:查看历史版本信息
+            git reset --hard 七位历史版本号：把指定版本的代码回滚到本地
+            git reflog:查看所有的历史版本信息
+
+            git remote -v:查看本地仓库和远程仓库的关联状态
+            git remote add origin 远程仓库的项目地址 ：建立关联
+            git remote rm origin: 解除关联
+
+            git pull origin master:把远程仓库的代码拉取到本地
+            git push origin master：把本地的代码推送到远程仓库
+
+            git clone 远程仓库的项目地址 本地的仓库名(git init   git remote add  git pull)
+
+            git add . 
+            git commit -m''
+            git pull
+            git push
+         */
+    </script>
+</body>
+</html>

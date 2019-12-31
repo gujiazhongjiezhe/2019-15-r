@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 变量提升的特殊情况
+
+//1、变量提升只发生在等号的左边
+        //    console.log(fn)
+        //    var fn = function(){}
+
+// 2、不管条件是否成立，都要进行变量提升
+
+        // console.log(num) // un 
+        // if (false) {
+        //     var num = 12;
+        // }
+        // console.log(num) // un
+
+
+        /* 
+        fn
+        */
+        // console.log(fn); // un
+        // if(false){
+        //     // 在老版本浏览器中，条件判断里的带function的不仅要声明，还有定义，
+        //     // 在新版本浏览器中，条件判断里的带function只声明不定义
+        //     // 条件一旦成立，做的第一件事就是给函数名赋值
+        //     fn()
+        //     function fn(){}
+        // }
+        // console.log(fn) // un
+
+
+        /* 
+        fn = f
+        */
+        // console.log(fn); // un
+        // if(true){
+        //     // 在老版本浏览器中，条件判断里的带function的不仅要声明，还有定义，
+        //     // 在新版本浏览器中，条件判断里的带function只声明不定义
+        //     // 条件一旦成立，做的第一件事就是给函数名赋值
+        //     fn() // 不会
+        //     function fn(){}
+        // }
+        // console.log(fn) // f
+
+        // console.log(fn) // f
+        // for (var i = 0; i < 4; i++) {
+        //     console.log(fn) // f
+        //     function fn() {}
+        // }
+        // console.log(fn) // f
+
+// 3、return下面的代码虽然不执行，但是要进行变量提升
+        // function fn(){
+        //     /* 
+        //     num
+        //     */
+        //     console.log(num); // un
+        //     return;
+        //     var num = 12;
+        // }
+        // fn()
+
+// 4、给window增加键值对发生在变量提升阶段
+
+        // in 属性是检测当前对象是否包含某一个属性名，如果包含返回true，如果不包含返回false
+        // let obj = {
+        //     name:1
+        // }
+        // console.log('name' in obj); // true
+        // console.log('ss' in obj); // false
+
+        /* 
+        fn = f
+        window.fn = f
+        */
+        // if ('fn' in window) {
+        //      // 条件一旦成立，做的第一件事就是给函数名赋值
+        //     fn(); // 'erYa'
+        //     function fn() {
+        //         console.log('erYa');
+        //     }
+        // }
+        // fn(); // 'erYa'
+
+// 5、自执行函数没有变量提升
+        // (function(){
+
+        // })()
+
+            /* 
+            
+            */
+        // let obj = {
+        //     // 当对象里的代码以键值对的形式存储的时候，这个自执行函数就会立即执行(或者说代码执行到这一行的时候，函数立即执行)
+        //     fn: (function () {
+        //         // return 1
+        //     })()
+        // }
+        // console.log(obj.fn)
+
+        /* 
+        obj = aaafff000
+        */
+        var obj = {
+            fn: (function () {
+       // 当代码执行到这一行的时候，往堆内存里存储键值对的时候，自执行函数就运行了
+                console.log(100);
+                return function () {
+                    console.log(200);
+                }
+            })()
+        };
+        console.log(300);
+        obj.fn(); // 执行函数中返回的小函数执行
+        console.log(obj.fn);
+        // 100 300 200 f
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+  // 在私有作用域里使用一个变量，先看自己有没有，如果自己有，就是用自己的，如果没有，就往上一级作用域查找，如果上一级作用域还没有，就往上一级的上一级查找，直到找到全局作用域为止，如果还没有，就报错,这种一级一级向上查找的机制就是作用域链查找机制
+
+// 上一级作用域：函数在创建的时候，他的上一级作用域就已经确定了，函数在哪创建的，他的上一级作用域就是谁，和在哪执行的没有关系
+
+        // /* 
+        // n = 1
+        // fn = fn
+        // x
+        // */
+        // var n = 1;
+        // function fn() {
+        //     /* 
+        //     n = 2 1 0
+        //     f = f
+        //     */
+        //     var n = 2;
+        //     function f() {
+        //         /* 
+                
+        //         */
+        //         n--;
+        //         console.log(n); // 1 0 
+        //     };
+        //     f();
+        //     return f;
+        // }
+        // var x = fn(); // f
+        // x(); // f()
+        // console.log(n); // 1
+
+
+        /* 
+        num = 1
+        fn = fn
+        f = f
+
+        */
+        var num = 1;
+        function fn(){
+            /* 
+            fn的上一级作用域是全局
+            */
+            return function(){
+                /* 
+                他的上一级作用域是fn
+                */
+                console.log(num) // 1
+            }
+        }
+        var f = fn();
+        f()
+
+    </script>
+</body>
+
+</html>
