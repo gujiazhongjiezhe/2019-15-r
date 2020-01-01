@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+      堆内存的回收机制：
+      堆内存是用来存储引用数据类型值的
+
+      let a = {name:12};
+      a = null;
+      如果堆内存的空间地址不被占用，那这个堆内存就会被浏览器回收
+
+      谷歌浏览器的回收机制：谷歌浏览器每隔一段时间，就会检测一次，检测当前作用域里有没有不被占用的堆内存，如果有，就把其销毁(回收)
+
+      IE浏览器和火狐浏览器的回收机制：采用计数的规则，如果堆内存被占用一次，浏览器就会默认给当前堆内存加1，如果堆内存占用次数被释放一次，那浏览器就会给当前堆内存默认减1，如果浏览器发现某个堆内存的计数为0，就把其销毁(回收)
+      */
+
+        //   let a = {}
+        //   let b = a;
+        //   b = null;
+        //   a =null;
+
+        // let a = {name:1};
+        // a = null;
+
+
+        /* 
+        栈内存的回收机制：
+        栈内存分为全局栈内存和私有栈内存
+
+        1、全局栈内存的销毁(回收)
+            当我们打开一个页面的时候就会形成一个全局的栈内存，一般情况下他是不销毁的，因为他要为全局的代码执行提供环境
+            如果你就像把全局栈内存销毁，那就只能关闭当前页面
+
+        2、私有栈内存的销毁(回收)
+            1、销毁
+            2、不销毁
+            3、不立即销毁
+        */
+
+    // 1、销毁
+        // function fn(){
+        //     console.log(111)
+        // }
+        // fn() // 函数每执行一次就会开辟一个全新的私有栈内存
+
+    // 2、不销毁：如果栈内存不销毁要满足以下两个条件：
+        // 函数返回一个引用数据类型的值
+        // 而且这个值得被外界所接收
+
+        // function fn() {
+        //     /* 
+        //       作用域不销毁
+        //      */
+        //     var a = 12;
+        //     return function () {console.log(a)} // aaafff000
+        // }
+
+        // let f = fn() // aaafff000
+        // f()
+
+
+        // let f = fn(); // aaafff000
+        // // f = null;
+        //     // f() 
+
+
+        // function fn() {
+        //     return 3
+        // }
+        // let f = fn(); // 3 作用域销毁
+
+    // 3、不立即销毁
+        // function fn(){
+
+        //     return function(num){console.log(num)} // aaafff000
+        // }
+        // fn()(100) // 把fn执行的返回结果继续执行
+        // let f = fn();aaafff000
+        // f()
+        // aaafff000()
+        // 大函数在小函数执行完成之前不能销毁，他的等到小函数执行完成之后再销毁
+
+
+        // function fn(){
+        //     return 1
+        // }
+        // fn()()
+        // // 1() // 报错
+    </script>
+</body>
+
+</html>

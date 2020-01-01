@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            /* 盒子自带margin和padding值，需要清除 */
+            margin: 0;
+            padding: 0;
+        }
+
+        .tab {
+            width: 400px;
+            height: 300px;
+            margin: 100px auto;
+        }
+
+        #list {
+            list-style: none;
+            overflow: hidden;
+        }
+
+        #list li {
+            float: left;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: lightgreen;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #list li.select {
+            background: red;
+        }
+
+        .tab div {
+            display: none;
+            width: 400px;
+            height: 300px;
+            border: 1px solid red;
+            line-height: 300px;
+            text-align: center;
+            color: red;
+            font-size: 30px;
+        }
+
+        .tab .select {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tab" class="tab">
+        <ul id="list" class="list">
+            <li class="select">电影</li>
+            <li>综艺</li>
+            <li>电视剧</li>
+        </ul>
+        <div class="select">冰雪奇缘2</div>
+        <div>奇葩说</div>
+        <div>甄嬛传</div>
+    </div>
+    <script>
+        let navList = document.querySelectorAll('li');
+        let tabList = document.querySelectorAll('#tab div');
+
+        // 利用let块级作用域实现
+        // for (let i = 0; i < tabList.length; i++) {
+        //     navList[i].onclick = function () {
+        //         tabSelect(i)
+        //     }
+        // }
+        // let和for循环结合，每循环一轮就会创建一个块级作用域(这个作用域会保存变量i的值)，循环三次，就会创建3个块级作用域，
+        // {
+        //    let i= 0
+        //     navList[0].onclick = function () {
+        //         tabSelect(i)
+        //     }
+        // }
+
+        // {
+        //   let  i= 1
+        //     navList[1].onclick = function () {
+        //         tabSelect(i)
+        //     }
+        // }
+
+        // {
+        //    let i= 2
+        //     navList[2].onclick = function () {
+        //         tabSelect(i)
+        //     }
+        // }
+
+
+        // 利用闭包实现(闭包可以保存值)
+        for (var i = 0; i < tabList.length; i++) {
+            navList[i].onclick = (function(index){
+                return function(){
+                    tabSelect(index)
+                }
+            })(i)
+        }
+
+        /* 
+        i=0
+             navList[0].onclick = (function(index){ // 0
+
+                return function(){
+                    tabSelect(index)
+                }
+            })(i)
+
+         i=1
+            navList[1].onclick = (function(index){ // 1
+
+                return function(){
+                    tabSelect(index)
+                }
+            })(i)
+
+        i=2
+             navList[2].onclick = (function(index){ // 2
+
+                return function(){
+                    tabSelect(index)
+                }
+            })(i)
+        */
+        function tabSelect(index) {
+            for (var i = 0; i < tabList.length; i++) {
+                navList[i].className = '';
+                tabList[i].className = ''
+            }
+            navList[index].className = 'select';
+            tabList[index].className = 'select'
+        }
+    </script>
+</body>
+
+</html>

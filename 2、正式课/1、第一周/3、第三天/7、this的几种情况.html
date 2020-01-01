@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">111</button>
+    <script>
+        /* 
+        this是js中的关键字，他是有特殊意义的
+        this就是函数的执行主体，谁执行的当前函数，函数里的this就是谁
+
+        1、全局作用域下，this是window(在严格模式下this是undefined)
+        2、函数里的this，看执行函数前有没有点，如果有点，那点前面是谁，函数里的this就是谁，如果没有点，那函数里的this就是window
+        3、自执行函数里的this就是window
+        4、给元素绑定事件行为，那事件里的this就是当前元素本身
+        5、回调函数里的this一般情况下是window
+        6、箭头函数没有this，你要是在箭头函数里使用this，那他就会往上一级作用域查找，直到找到全局作用域为止，就是window
+        */
+
+    // 1、全局作用域下，this是window(在严格模式下this是undefined)
+        //    console.log(this === window) // true
+        //    window.a = 13;
+        //    console.log(this.a) // 13
+
+
+
+    // 2、函数里的this，看执行函数前有没有点，如果有点，那点前面是谁，函数里的this就是谁，如果没有点，那函数里的this就是window
+
+        // function fn(){
+        //     console.log(this) // window
+        // }
+        // fn() 
+
+        // var num = 13;
+        // let obj = {
+        //     num:3,
+        //     fn:function(){
+        //         console.log(this.num)
+        //     }
+        // }
+        // obj.fn() // 此处函数回执行，对应函数里的this是obj
+        // var f = obj.fn;
+        // f()// 此处函数回执行，对应函数里的this是window
+
+    // 3、自执行函数里的this就是window
+        // (function(){
+        //     console.log(this) // window
+        // })()
+
+    // 4、给元素绑定事件行为，那事件里的this就是当前元素本身
+        // btn.onclick = function(){
+        //     console.log(this) // btn
+        // }
+
+    // 5、回调函数里的this一般情况下是window
+        // function fn(m){
+        //     m()
+        // }
+        // fn(function(){
+        //     console.log(this) // window
+        // })
+
+
+        // // setTimeout(function(){
+        // //     console.log(this) // window
+        // // }, 5000)
+
+
+
+        // [1,2].forEach(function(item, index){
+        //     console.log(this) // window
+        // })
+
+        // let fn = ()=>{
+        //     console.log(this) // 当前作用域没有this，向上一级作用域查找，上一级作用域是全局作用域，this是window
+        // }
+        // fn()
+
+
+    // 6、箭头函数没有this，你要是在箭头函数里使用this，那他就会往上一级作用域查找，如果上一级作用域也没有this，那就往上一级的上一级查找，直到找到全局作用域为止，就是window
+        // let obj = {
+        //     num: 2,
+        //     fn: function () {
+        //         // this--->obj
+        //         let m = () => {
+        //             console.log(this.num) // obj(向上一级作用域查找)
+        //         }
+        //         m()
+        //     }
+        // }
+        // obj.fn()
+
+    //----------------------------------------------------------------------------------
+    // 练习题
+        // var num = 100;
+        // var obj = {
+        //     num: 2,
+        //     fn: function () {
+        //         var num = 1;
+        //         console.log(this); // window
+        //         (function (num) { // 100
+        //             console.log(this.num + num); // 100+100
+        //         })(this.num);
+        //     }
+        // }
+        // obj.fn();
+        // var f = obj.fn;
+        // f();
+
+        // var num = 1; // 6 7
+        // var obj = {
+        //     num: 0,
+        //     fn: function () {
+        //         num = 6;
+        //         // this-->obj
+        //         (function (num) { // 0 1
+        //             ++this.num;
+        //             num++;
+        //             console.log(num); // 1
+        //         })(this.num);
+        //     }
+        // }
+        // obj.fn(); 
+        // console.log(window.num, obj.num); // 7 0
+    </script>
+</body>
+
+</html>

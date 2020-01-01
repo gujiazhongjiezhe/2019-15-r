@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        1、全局作用域，全局变量
+        当我们打开一个页面的时候，就会形成一个全局的作用域，之后还会形成一个全局的大对象window
+        在全局作用域下创建的变量就是全局变量
+        let/var/const/function/class/import
+
+            1、var和function在全局作用域下创建变量的时候，会给window增加键值对，属性名是变量名，属性值就是当前变量名所代表的值(let和 const不会)
+            2、var和function可以重复创建同一个变量(let和 const不行)
+            3、var和function有变量提升，(let和const没有)
+            4、const在声明的时候必须给他定义
+            5、在当前作用域下如果有两个相同的变量，不会重新声明，但是要重新定义
+
+        2、私有作用域和私有变量
+            私有作用域：函数执行会形成私有作用域，全局作用域是包含于私有作用域的
+            私有变量：在私作用域下声明的变量是私有变量
+                let/var/const/function
+                形参也是私有变量
+            
+                函数的定义：
+                function fn(){
+                    1、开辟一个堆内存，生成一个16进制的空间地址
+                    2、把函数体的代码以字符串的格式存储进堆内存中
+                    3、把16进制的空间返回到值存储区，和变量进行关联
+                }
+
+                fn()
+                函数执行：
+                1、形成私有作用域
+                2、形参赋值
+                3、变量提升
+                4、代码执行
+                5、作用域是否销毁
+        3、变量提升：
+                变量提升是浏览器的一种机制
+                在代码执行之前。浏览器会对当前作用域里的带var和带function的变量进行提前的声明和定义，带var的只声明不定义，带function的既声明有定义
+        4、作用域链：我们在私有作用域里使用一个变量，先看自己的私有作用域里有没有，如果有就直接用，如果没有就向上一级作用域查找，如果上一级作用域还没有，就继续上上一级的上一级查找，直到找到全局作用域为止，如果全局作用域还没有，就报错，这种一级一级上上查找的机制就是作用域链机制
+        5、上一级组用域：函数上一级作用域在创建的时候就已经确定了，在哪创建的，那他的上一级作用域就是哪，跟函数在哪执行没有关系
+
+        6、变量提升的特殊情况：
+                1、变量提升只发生在等号的左边
+                2、不管条件是否成立，都要进行变量提升：
+                    在老浏览器中function创建的变量既声明，又定义
+                    在新浏览器中function创建的变量只声明，不定义
+                    条件一旦成立，做的做的第一件事，就是马上给函数赋值
+                3、自执行函数没有变量提升
+                4、return后面的代码虽然不执行，但是要变量提升
+                5、用var和function创建的变量会给window增加键值对，(在变量提升阶段就给window加上了)
+        
+
+        */
+        //    var a = 12;
+        //    var a = 13;
+        // console.log(a);
+        // let a = 12;
+        // console.log(a);
+        // const s = 12;
+
+        // var a = 12;
+        // var a = 16;
+
+        // function fn(){
+        //     var a = 13;
+        //     console.log(a)
+        // }
+        // fn()
+        // console.log(a)
+
+        // // var a = 12;
+        // function fn() {
+        //     var b = 13;
+        //     // var a = 14;
+
+        //     function fn1() {
+
+        //         console.log(a) // 14
+        //     }
+        //     return fn1 // aaafff000
+        // }
+        // let f = fn(); // aaafff000
+        // f(
+
+        // console.log(fn) // un
+        // if(true){
+
+        //     fn()
+        //     function fn(){}
+        // }
+        // console.log(fn)
+        // (function(){})()
+        // +function(){}()
+        // -function(){}()
+        // !function(){}()
+        // ~function(){}()
+
+        // function fn(){
+        //     /* 
+        //     f = f
+        //     */
+        //     f();
+        //     return;
+        //     console.log(100);
+        //     function f(){
+        //         console.log(1)
+        //     }
+        // }
+        // fn();
+
+        // var ary = [12, 23];
+
+        // function fn(ary) { // [0]
+        //     console.log(ary); // [12,23]
+        //     ary[0] = 100;
+        //     ary = [100];
+        //     ary[0] = 0;
+        //     console.log(ary);
+        // }
+        // fn(ary);
+        // console.log(ary);
+
+
+        /* 
+        a = 12
+        fn = f
+        */
+        console.log(a); // un
+        var a = 12;
+        function fn() {
+            /* 
+            a = 13
+            */
+            console.log(a); // un
+          var a = 13;
+        }
+        fn();
+        console.log(a); // 12
+    </script>
+</body>
+
+</html>
