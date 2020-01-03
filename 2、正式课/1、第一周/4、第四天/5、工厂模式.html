@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        工厂模式：
+        把实现同一个功能的代码封装到函数里，以后想实现这个功能，就直接调用这个函数就好了
+        高内聚(提高代码的复用率)
+        低耦合(减少页面重复的代码)
+         */
+        //  let person1 = {
+        //      name:'xxx',
+        //      age:'xxx'
+        //  };
+        function createInfo(name, age) {
+            let guoji = 'China';
+            // 如果键值对的属性名和属性值一模一样，可以写一个，(这是ES6的新增语法)
+            return {
+                name: name,
+                age,
+                guoji
+            }
+        }
+        let person1 = createInfo('qinHao', 18);
+        let person2 = createInfo('qin', 19);
+        let person3 = createInfo('Hao', 20);
+        console.log(person1, person2, person3)
+    </script>
+</body>
+
+</html>

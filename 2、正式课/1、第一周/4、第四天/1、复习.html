@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        /* 
+        1、堆栈内存
+        2、堆栈内存的回收
+        3、闭包
+        4、作用域链
+        5、块级作用域
+        6、this
+        */
+
+        /* 
+        堆内存：用来存储引用数据类型的
+        栈内存：全局栈内存和私有栈内存(存储基本值和变量、为代码执行提供环境)
+            全局栈内存：打开一个页面就会形成全局的栈内存，关闭页面，全局的栈内存就会销毁
+            私有栈内存：函数执行会形成私有栈内存
+        */
+
+        let obj = {}
+        obj = null;
+
+        /* 
+        谷歌浏览器的回收机制：
+            谷歌浏览器每隔一段时间就会检查一次，看当前作用域有没有空闲的堆内存，如果有，就把他进行回收
+
+        IE浏览器和火狐浏览器：利用的是计数的规则：如果当前空间地址被占用一次，浏览器就会给当前堆内存默认加1，如果空闲一次，就会默认减1，如果浏览器发现某个堆内存的计数为0，说明当前堆内存是空闲的，就把其进行回收
+
+
+
+        栈内存的回收：
+            全局的栈内存：他一般是不会销毁的，只有关闭页面他才会销毁
+            私有栈内存：销毁，不销毁，不立即销毁
+        */
+    //    function fn(){
+    //        console.log(1)
+    //    }
+    //    fn();
+
+    // 1、返回一个引用数据类型的值
+    // 2、被外界所接收
+
+    // function fn(){
+    //     let f = function(){
+    //         console.log(1)
+    //     };
+    //     return f
+    // }
+
+    // let f = fn()
+
+    // 在当前作用域开辟了一个堆内存，而且被外界所接收
+    // let m = 1;
+    // function fn(){
+
+    //     m = function(){};
+    // }
+    // fn();
+    // m()
+
+    // function fn(){
+    //     let m = function(){}
+
+    // }
+    // fn()
+        // let box  =document.getElementById('box')
+        // function fn(){
+
+        //     box.onclick = function(){console.log(1)}
+        // }
+        // fn();
+
+        // function s(){
+        //     box.onclick = null;
+        // }
+        // s()
+
+    //     function fn(){
+    //         return function(){
+    //             console.log(1)
+    //         }
+    //     }
+    //   let s = fn()()
+    // 函数执行，形成不销毁的作用域，他可以保护里边的变量不受外界所干扰，还可以保存值
+
+    /* 
+    1、this是js中的关键字，他不能作为变量名使用
+    2、this就死函数的执行主体，谁执行的函数，函数里的this就是谁
+        1、全局作用域在this是window
+        2、函数执行，看执行函数前有没有点，如果有点，那点前是谁，函数里的this就是谁，如果没有点，那函数里的this就是window
+        3、自执行函数里的this是window
+        4、给当前元素绑定事件行为，那事件里的this就是当前元素本身
+        5、回调函数里的this一般是window
+     */
+    //  box.onclick = function(){
+    //      console.log(this)
+    //  }
+
+    function fn(m){
+        m()
+        // let obj = {
+        //     f:m
+        // }
+        // obj.f()
+    }
+    fn(function(){
+        console.log(this)
+    })
+    </script>
+</body>
+</html>

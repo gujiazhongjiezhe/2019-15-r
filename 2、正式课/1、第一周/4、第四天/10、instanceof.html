@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+       1、数据类型检测方式之instanceof
+       2、检测当前实例是否属于某个类
+       3、语法：实例 instanceof 类     如果当前实例属于这个类，那就返回true，反之返回false
+
+       4、instanceof不能够检测基本数据类型值,如果你就想用它检测基本值，那你就用构造函数方式去创建实例
+       */
+
+        function Fn() {
+            this.name = 'haha'
+            //    return {}
+        }
+
+        let f = new Fn;
+        console.log(f instanceof Fn) // true
+        console.log(1 instanceof Number) // false 
+        // instanceof不能够检测基本数据类型值
+
+        let num = new Number(1);
+        console.log(num instanceof Number) // true
+        console.log(num instanceof Array) // false
+    </script>
+</body>
+
+</html>

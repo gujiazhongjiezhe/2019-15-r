@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        单例模式：
+         */
+        // var name = 'qinHao';
+        // var age = 18;
+
+        // var name = 'shiYuan';
+        // var age = 18;
+
+        // 把描述同一个事物特征的信息放到同一个命名空间下，这就是单例模式
+        // let person1 = {
+        //     name:'qinHao',
+        //     age:18
+        // };
+        // let person2 = {
+        //     name:'shiYuan',
+        //     age:18
+        // };
+
+
+    // 高级单例模式
+        // jquery的外层就是利用的高级单例模式
+        // let person1 = (function(){
+        //     let name = 'qinHao';
+        //     let age = 18;
+        //     let sex = Math.round(Math.random()) === 0?'boy':'gril';
+        //     return {
+        //         name:name,
+        //         age:age,
+        //         sex:sex
+        //     }
+        // })()
+        // console.log(person1)
+
+        // var name = 12;
+
+        // var name = 13;
+
+        let person1 = (function () {
+            var name = 12
+        })();
+
+        let pwrson2 = (function () {
+            var name = 13
+        })();
+        // 在全局作用域下创建的变量越少越好
+    </script>
+</body>
+
+</html>

@@ -24,14 +24,15 @@
     </script>
     <script>
         let body = document.body;
-        let i = 0;
+        let i = 0; // 1 2
         let ary = ['red', 'yellow', 'orangered', 'green', 'pink', 'blue', 'purple'];
-        // body.onclick = function () {
-        //     // 函数每执行一次，就会通过i去数组里获取相应的颜色，然后在给i加累加1；
-        //     i > ary.length - 1 ? i = 0 : null;
-        //     // 如果i的值大于数组的最后一项索引了，就让i变为0;
-        //     body.style.backgroundColor = ary[i++]
-        // }
+        body.onclick = function () {
+            // 函数每执行一次，就会通过i去数组里获取相应的颜色，然后在给i加累加1；
+            i > ary.length - 1 ? i = 0 : null;
+            // 如果i的值大于数组的最后一项索引了，就让i变为0;
+            // body.style.backgroundColor = ary[i++]
+            
+        }
 
     // 简单写法
     // body.onclick = function () {

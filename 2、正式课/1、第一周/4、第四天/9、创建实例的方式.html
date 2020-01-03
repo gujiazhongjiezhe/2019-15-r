@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+       实例的创建方式
+       1、字面量创建方式(通过字面量方式创建的实例有可能不是对象数据类型的)
+       2、构造函数创建方式
+       */
+        /* // 字面量创建方式
+           // var num = 1; // 创建一个Number类的实例(num是Number的实例)
+           // console.log(num.toFixed(2)) // '1.00';
+
+           // 构造函数创建方式
+           // var num1 = new Number(1);
+           // console.log(num1)
+           // console.log(num1.toFixed(2)) // '1.00'
+        */
+
+        let ary = [1, 2, 3, 4, 5];
+        console.log(ary)
+        let ary1 = new Array(1, 2, 3, 4, 5);
+        console.log(ary1)
+        let ary2 = new Array(7); // 如果构造函数传递一个实参，那实例是空数组，但是他的length是当前实参的值
+        console.log(ary2);
+
+        // null和undefined不能通过构造函数创建
+
+
+
+
+
+
+
+
+
+
+
+
+        //    console.log(Number('1'))
+
+        // function MyNumber(num){
+        //         this.num = num; 
+        //         return num      
+        // }
+        // let f = new MyNumber(1)
+        // console.log(f);
+
+        // let res = MyNumber(1);
+        // console.log(res)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        构造函数：
+        js的内置类满足不了咱们的日常需求，咱们就要自己去自定义类
+        构造函数就是创建自定义类的
+        new 他是js里的关键字，有特殊的意义
+        在函数执行之前加上new，那此时的函数就是构造函数
+        */
+        function Fn(name, age) {
+            /* 
+            形成私有作用域
+            形参赋值
+            变量提升
+            默认生成一个对象(初始化的实例)
+            让当前的this指向这个空对象(让this指向当前实例)
+            代码执行
+            默认把这个对象renturn 出去(把当前实例return出去)
+            作用域是否销毁
+            */
+            this.name = name;
+            this.age = age;
+            this.say = function () {};
+            return {}
+        }
+
+
+        // let f1 = new Fn('qinHao', 18); // 构造函数运行
+        // console.log(f1) // {name:'qinHao', age:18, say:f}
+        // let f2 = new Fn('shiYuan', 18); // 构造函数运行
+        // console.log(f2)// {name:'qinHao', age:18, say:f}
+        // f1和f2都是Fn的实例
+        // console.log(f1.say === f2.say)  // false
+        // console.log(f1.age === f2.age) // true
+
+
+        // let f = Fn('qinHao', 18); // 普通函数运行
+        // console.log(f) // undefined
+
+        let f = new Fn; // 构造函数执行如果不想传递实参，可以省略函数执行的小括号
+        console.log(f)
+
+
+        // new 函数执行 叫做构造函数运行模式，此时的Fn就是自定义的Fn类(构造函数)，函数执行之后的返回结果是一个对象，叫做实例对象
+
+        // 实例是对象数据类型的(实例化对象)
+        // 类是函数数据类型的
+        // 构造函数里的this指向当前实例
+
+        /* 
+        普通函数和构造函数的区别：
+            1、运行上的区别
+                1、构造函数运行：形成私有作用域-->形参赋值-->变量提升-->默认生成当前实例-->让当前的this指向当前的实例-->代码执行-->默认把当前实例return出去-->作用域是否销毁
+                2、普通函数运行：形成私有作用域-->形参赋值-->变量提升-->代码执行-->作用域是否销毁
+            2、执行上的区别：
+                1、普通函数是函数名加小括号执行
+                2、构造函数是函数名前加new，如果你不想传实参，可以省略函数执行的小括号
+            3、如果你手动return一个基本值，那不会影响构造函数的返回值，但是你要是手动return一个引用值，那构造函数的返回值就会发生变化(此时的返回值已经不是当前的实例)，我们不要轻易在构造函数里写return
+        */
+    </script>
+</body>
+
+</html>
