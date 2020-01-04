@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        检测当前实例是否属于某个类
+        实例 instanceof 类
+        不能检测基本值
+        他只能检测对象数据类型的值
+        */
+       /* 
+       创建变量的方式
+       1、字面量方式创建
+       2、构造函数方式创建
+       */
+
+        // let ary = [];
+        // let num = 1;
+        // console.log(num instanceof Number)
+        // console.log(ary instanceof Array);
+        // console.log(ary instanceof String)
+    // Number/String/Boolean/Null/Undefined/Object/Array/RegExp/Date/Symbol
+
+    // let num = new Number(3);
+    // console.log(num)
+    // console.log(num.toFixed(2))
+    // console.log((3).toFixed(2))
+
+    function Fn(){
+        this.name = 12;
+        return 1
+    }
+    let f = new Fn;
+    console.log(f);// {name:12}
+    console.log(f instanceof Fn); // true false
+    console.log([] instanceof Object)
+    </script>
+</body>
+</html>

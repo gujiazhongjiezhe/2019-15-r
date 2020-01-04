@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        构造函数：
+        */
+
+        function Fn(name, age) {
+            /* 
+            形成私有作用域
+            形参赋值
+            变量提升
+            默认生成一个空对象(初始化一个实例对象)
+            让当前的this指向这个对象(指向当前实例)
+            代码执行
+            默认把当前实例return 出去
+            作用域是否销毁
+            */
+            this.name = name;
+            this.age = age;
+        }
+
+        let f = Fn() // 普通函数运行模式
+        let f1 = new Fn() // 构造函数运行模式
+        // {name:undefined,age:undefined}
+        // 在函数运行之前加上new，此时的函数就是构造函数运行模式，(Fn就是自定义类)
+        // f1是Fn的实例
+        // Fn是f1的所属类
+        // 实例是对象数据类型的，所以实例也叫实例化对象
+        // 类是函数数据类型的
+
+        /* 
+        普通函数和构造函数的区别：
+            1、运行上的区别
+                1、普通函数运行：形成私有作用域-->形参赋值-->变量提升-->代码执行-->作用域是否销毁
+                2、构造函数运行：形成私有作用域-->形参赋值-->变量提升-->默认生成空对象 -->让当前的this指向这个对象-->代码执行-->默认把这个对象return出去-->作用域是否销毁
+            2、函数执行上的区别：
+                1、构造函数执行前加new，如果不传实参，可以省略函数执行的小括号
+            3、如果我手动return一个基本值，对构造函数的返回值没有影响，如果手动return一个引用值，他会改变构造函数的返回值，(返回值已经不是当前的实例了)不要轻易去修改构造函数的return值
+        */
+
+        var num = 1; // 4 14
+        var obj = {
+            num: 2  // 22
+        };
+        obj.fn = (function (num) {
+            /* 
+            num = 2 3 4 5
+            */
+            this.num = num * 2;
+            num++;
+            return function (n) {
+                /* 
+                n = 20
+                */
+                this.num += n;
+                num++;
+                console.log(num)
+            }
+        })(obj.num);
+        var fn = obj.fn;
+        fn(10); // 4
+        obj.fn(20); // 5
+        console.log(num, obj.num); // 14 22
+
+    </script>
+</body>
+
+</html>

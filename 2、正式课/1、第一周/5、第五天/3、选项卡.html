@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            /* 盒子自带margin和padding值，需要清除 */
+            margin: 0;
+            padding: 0;
+        }
+
+        .tab {
+            width: 400px;
+            height: 300px;
+            margin: 100px auto;
+        }
+
+        #list {
+            list-style: none;
+            overflow: hidden;
+        }
+
+        #list li {
+            float: left;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: lightgreen;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #list li.select {
+            background: red;
+        }
+
+        .tab div {
+            display: none;
+            width: 400px;
+            height: 300px;
+            border: 1px solid red;
+            line-height: 300px;
+            text-align: center;
+            color: red;
+            font-size: 30px;
+        }
+
+        .tab .select {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tab" class="tab">
+        <ul id="list" class="list">
+            <li class="select">电影</li>
+            <li>综艺</li>
+            <li>电视剧</li>
+        </ul>
+        <div class="select">冰雪奇缘2</div>
+        <div>奇葩说</div>
+        <div>甄嬛传</div>
+    </div>
+    <script>
+        let navList = document.querySelectorAll('#list li');
+        let tabList = document.querySelectorAll('#tab div');
+        // for (var i = 0; i < navList.length; i++) {
+        //     navList[i].index = i;
+        //     navList[i].setAttribute('ss', i);
+        //     navList[i].onclick = function(){
+        //         // selected(this.index)
+        //         selected(this.getAttribute('ss'))
+        //     }
+        // }
+
+        // for (let i = 0; i < navList.length; i++) {
+        //     navList[i].index = i;
+        //     navList[i].setAttribute('ss', i);
+        //     navList[i].onclick = function(){
+        //         // selected(this.index)
+        //         selected(this.getAttribute('ss'))
+        //     }
+        // }
+        /* 
+        {
+            let i = 0
+             navList[i].onclick = function(){
+                selected(i)
+            }
+        }
+
+        {
+            let i = 1
+             navList[i].onclick = function(){
+                selected(i)
+            }
+        }
+        {
+            let i = 2
+             navList[i].onclick = function(){
+                selected(i)
+            }
+        }
+        */
+       /* 
+       闭包：函数执行。形成不销毁的作用域，他可以保护里边的私有变量不受外界干扰，而且还可以保存值
+       */
+
+
+       for (var i = 0; i < navList.length; i++) {
+            navList[i].onclick = (function(index){
+                return function(){
+                    selected(index)
+                }
+            })(i)
+        }
+
+        /* 
+        i=0
+        navList[0].onclick = (function(index){
+            
+            // index = 0
+             
+            return function(){
+                selected(index)
+            }
+        })(0)
+
+        i=1
+        navList[1].onclick = (function(index){
+            
+            // index = 1
+             
+            return function(){
+                selected(index)
+            }
+        })(1)
+        
+
+        i=2
+        navList[2].onclick = (function(index){
+            
+            // index = 2
+             
+            return function(){
+                selected(index)
+            }
+        })(2)
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function selected(index){
+            for (var i = 0; i < tabList.length; i++) {
+                navList[i].className = '';
+                tabList[i].className = '';
+            }
+            navList[index].className = 'select';
+            tabList[index].className = 'select';
+        }
+
+
+
+
+        // let A = {
+        //     b:function(){
+        //         console.log(this); // A
+        //         return this
+        //     },
+        //     c:function(){
+        //         console.log(this); // A
+        //         return this
+        //     }
+        // }
+        // A.b().c();
+        // A.c()
+    </script>
+
+</body>
+
+</html>

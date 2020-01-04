@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        作用域：全局作用域(全局变量)、私有作用域(私有变量)
+        全局作用域：
+
+        var、function、let、const的区别
+
+        1、var和function在全局作用域下声明的变量会给window增加键值对(发生在变量提升阶段)，let和const不会
+        2、var和function和重复创建同一个变量名(如果出现同一个变量名，不会重新声明，但是要重新定义)，但是let和const不可以
+        3、var和function有变量提升，但是let和const没有
+        4、用const创建常量时必须赋值，要不然就报错
+        */
+       /* 
+       函数的执行的时候的步骤：
+       1、形成私有作用域
+       2、形参赋值
+       3、变量提升
+       4、代码执行
+       5、作用域是否销毁
+       */
+
+       /* 
+       变量提升
+       在当前作用域下，在代码执行之前，浏览器会对带var和带function的变量进行提前的声明(创建变量)和定义(赋值)，带var的至圣名不定义，带function的不仅声明还要定义
+
+       变量提升的特殊的情况：
+       1、不管条件是否成立，都要进行变量提升
+            在老版本浏览器中，带function的既声明又定义
+            在新版本浏览器中，带function的只声明不定义
+            条件一旦成立，做的第一件事就是马上给函数名赋值
+        2、块级作用域
+            let和const和大括号结合就会形成块级作用域
+        3、变量提升发生在等号的左边
+        4、自执行函数没有变量提升
+        5、函数的return后面的代码虽然不执行，但是要进行变量提升
+       */
+
+      /* 
+      上一级作用域：函数在创建的时候他的上一级作用域就已经确定了，函数在哪创建的，他的上一级作用域就是谁，跟函数在哪执行没有关系
+      作用域链：在私有作用域里去使用一个变量，先看自己私有的有没有，如果没有，几区上一级作用域查找，如果上一级还没有就取上一级的上一级去查找，直到找到全局作用域为止，如果全局作用域还没有，那就报错，这种一级一级上上查找的机制就是作用域链
+      */
+     /* 
+     堆栈内存：
+     堆内存：存储引用值
+     let obj = {}
+     obj = 1;
+
+     栈内存：
+        全局栈内存：当页面关闭的时候，他就销毁了
+        私有栈内存：不销毁、不立即销毁、销毁
+
+        1、不销毁：在函数里创建引用值而且被外界的变量做占用
+            1、在函数里return一个引用值
+            2、被外界所接收
+        2、不立即销毁
+        3、立即销毁
+     */
+
+        // var a = 15;
+        // console.log(window.a)
+
+        // let obj = {
+        //     let
+        // }
+
+        // {
+        //     let a = 15;
+        //     console.log(a)
+        // }
+
+        // 在函数里创建引用值而且被外界的变量做占用
+    //     let f = null
+    //     function fn(){
+    //         // f = {}
+    //         return {}
+    //     }
+    //    let s =  fn()
+
+    // function fn(){
+    //     return {}
+    // }
+
+    // let f = fn();
+    //     f = null;
+
+    // function fn(){
+    //     return function(){}
+    // }
+    // fn()()
+        let m = 1
+        const w = m
+        console.log(w)
+        
+    </script>
+</body>
+</html>
