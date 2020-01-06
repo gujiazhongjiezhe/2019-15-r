@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        构造函数解决的实例的私有属性问题
+        原型模式解决了实例的公有属性问题
+
+        把一些公共的方法放到所属类的原型上，会少开辟堆内存，节省空间
+        */
+
+        // function Fn(){
+
+        //     // this.say = function(){}
+        // }
+        // Fn.prototype.say = function(){}
+        // let f1 = new Fn; // {}
+        // let f2 = new Fn;//  {}
+
+
+        // Array.prototype.push = function(){
+        //     console.log(111)
+        // }
+        // let ary = [1,2,3];
+        // ary.push(1,2)
+        // console.log(ary);
+
+
+        // Array.prototype.myPop = function(){
+        //     // this->当前实例
+        //     let last = this[this.length-1]; // 获取数组的最后一项
+        //     this.length--; // 删除数组最后一项
+        //     return last; // 把数组的最后一项return出去
+        // }
+        // let ary = [1,2,3,4];
+        // console.log(ary.myPop()) // 4
+        // console.log(ary) // [1,2,3]
+
+        // ---------------------------------------------------------
+        /* 
+        hasOwnProperty：检测当前属性是否是私有属性，在Object的原型上,只有是当前对象的私有属性才返回true，其余的都返回false
+        */
+        //    let obj = {
+        //        name:'qinHao'
+        //    }
+        //    Object.prototype.ss = 1;
+        //    console.log(obj.hasOwnProperty('qq'))
+
+        function Fn() {
+            this.a = 100
+        }
+        Fn.prototype.ss = 200;
+        let f1 = new Fn;
+        let f2 = new Fn;
+        // console.log(f1.hasOwnProperty('a'))
+        // console.log(Fn.prototype.hasOwnProperty('ss'))
+        // console.log('a' in f1)
+        // console.log('ss' in f1)
+        // console.log('sss' in f1)
+
+
+        // 封装一个检测当前属性是否是自己的公有属性的方法
+        Object.prototype.hasPubProperty = function(value){
+            // 1.检测属性名的格式是否正确
+            let ary = ['number', 'string'];
+            // includes检测当前值在数组中有没有，如果有返回true，没有返回false
+            if(!ary.includes(typeof value)){
+                return false
+            }
+            // 先使用in检测一下是否是自己的属性，然后在检测一下是否是私有属性，私有属性取反就是公有属性
+            // this是当前的实例
+            let n = value in this; // value in // 是否是自己的属性
+            let m = this.hasOwnProperty(value); // 是否是自己的私有属性
+            return n && !m;
+            // if(n === true && m !== true){
+            //     return true
+            // }
+            // else {
+            //    return false
+            // }
+
+        }
+        let ary = [1,2,3];
+        console.log(ary.hasPubProperty('push'))
+        console.log(ary.hasPubProperty(0))
+
+        console.log(ary.hasPubProperty('r'))
+        console.log(Array.prototype.hasPubProperty('push'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Foo() {
+            getName = function () {
+                console.log(1);
+            };
+            return this;
+        };
+        Foo.getName = function () {
+            console.log(2);
+        };
+        Foo.prototype.getName = function () {
+            console.log(3);
+        };
+        var getName = function () {
+            console.log(4);
+        };
+
+        function getName() {
+            console.log(5);
+        };
+
+        Foo.getName();
+        getName();
+        Foo().getName();
+        getName();
+        new Foo.getName();
+        new Foo().getName();
+        new new Foo().getName();
+
+        /* 
+        运算优先级：
+        1、成员访问：寻找对象里属性名对应的属性值(.)  19
+        2、new(带参数列表)：构造函数执行加小括号  19
+        3、new(无参数列表)：构造函数执行不加小括号  18
+        // 如果优先级一样，就从左往右依次执行
+         */
+
+        //  new Foo.getName();
+        // new Foo().getName();
+        // new new Foo().getName();
+        // 优先执行 new Foo()  // f
+        // new f.getName()
+
+        // new Af9()
+
+
+        //  let obj =  {
+        //      name:1
+        //  }
+        //  obj.name
+
+        // 可枚举类型、原型继承、中间类继承、call、apply、bond、求数组的最大值
+    </script>
+</body>
+
+</html>

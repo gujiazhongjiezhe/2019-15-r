@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        函数的三种角色：
+            1、普通函数：
+                1、实参、形参、return、arguments、箭头函数
+                2、this、变量提升、作用域、闭包、
+                3、形成私有作用域、形参赋值、变量提升、代码执行、作用域是否销毁
+                4、length是函数的形参个数、name是函数的名字
+            2、构造函数
+                1、形成私有作用域、形参赋值、变量提升、默认生成一个对象、让当前this指向这个对象、代码执行、默认把这个对象return出去(默认把当前的this return出去)、作用域是否销毁
+                2、构造函数执行前要加new，如果指向时不需要传递实参，可以省略执行小括号
+                3、如果手动return基本值，那不会影响构造函数的返回值，但是如果手动return引用值，那构造函数的返回值就被改变(此时的返回值已经不是当前的实例了) 
+            3、普通对象
+                1、对象是由键值对组成，而且键值对的属性名是数字和字符串数据类型的
+        */
+        /* 
+        函数：普通函数、类、
+        对象：普通对象、实例、原型
+        类：类的继承、多态和封装
+        
+        */
+    //    function fnn(name){
+
+    //    }
+    //    console.log(fnn.prototype)
+    //    console.dir(fnn)
+
+    function Fn(name, age){
+        this.name = name;
+        this.age = age
+    }
+    // Fn.say = 11;
+    Object.prototype.say = 11;
+    let f1 = new Fn('qinHao', 18);
+    let f2 = new Fn('shiYuan', 19);
+    // console.log(f1.say)
+    console.log(Fn.say);
+    console.log(Fn.__proto__.__proto__ === Object.prototype)
+
+    // Object Function Number String Boolean Array 
+    </script>
+</body>
+</html>
