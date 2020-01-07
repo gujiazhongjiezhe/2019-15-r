@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        for in：遍历可枚举属性
+        可枚举属性：对象的私有属性和对象所属类原型上的你手动给他添加的属性都是可枚举属性
+        不可枚举属性：对象的天生自带的属性和对象所属类原型上的天生自带的属性都是不可枚举属性
+        */
+    //    function Fn(){
+    //        this.a = 1;
+    //        this.b = 2;
+    //        this.c = 3;
+    //    }
+    //    Fn.prototype.ss = 100;
+    //    let f1 = new Fn(); // {a:1,b:2,c:3,__proto__}
+    //    f1.r = 200;
+    //    for(var key in f1){
+    //     console.log(key)
+    //    }
+    let obj = {
+        name:1,
+        age:2
+    }
+
+    Object.prototype.ss = 10;
+    for(var key in obj){
+        // 我就想要对象的私有属性，
+        if(obj.hasOwnProperty(key)){
+            console.log(key)
+        } 
+    }
+    </script>
+</body>
+</html>

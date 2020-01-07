@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        call的封装
+        */
+        //    function fn(){
+        //        console.log(this)
+        //    }
+        //    let obj = {name:1};
+        // 我想把fn的this指向obj，并且让fn执行
+
+        //    obj.fn = fn;
+        //    obj.fn();
+        //    delete obj.fn
+
+        /* 
+        1、完成改变fn的this指向
+        2、完成fn的正常传参
+        3、处理myCall的特殊参数传递
+        4、完成fn的返回值处理
+        */
+        function myCall(context,...arg) {
+
+            // context->obj   this->fn
+            context = context || window; // 如果不传参，或者传undefined，或者传null，那context都是window
+            let res = null; // 创建变量准备接收fn的返回值
+            context.fn = this; // 把fn增加到obj中
+            res = context.fn(...arg); // 让fn执行
+            delete context.fn; // 在obj中删除fn
+            return res; // 把fn的返回值return出去
+
+        }
+        Function.prototype.myCall = myCall;
+
+        function fn(n,m,f) {
+            console.log(this,n,m,f);
+            return 123456
+        }
+        let obj = {
+            name: 1
+        };
+        //    fn.call(obj);
+        console.log(fn.myCall(obj,1,2,3))
+        console.log(fn(1,2,3))
+    </script>
+</body>
+
+</html>

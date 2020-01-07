@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">111111111</button>
+    <script>
+        // "use strict"  // 使用严格模式
+        /* 
+        call、apply、bind 方法：他们是改变函数的this指向的
+        他们是Function原型上的方法，
+        而且每一个函数都是Function的实例，他们的__proto__都指向Function的原型
+        所以每一函数都可以调用Function原型上的方法
+        每一个函数都可以调用 call、apply、bind
+
+        */
+        //    function fn(){
+        //        console.log(this)
+        //    }
+        //    let obj = {name:1};
+        //    fn();
+
+        //    obj.fn = fn;
+        //    obj.fn();
+        //    delete obj.fn
+        //    console.log(obj)
+        //-----------------------------------
+        // function fn(n,m){
+        //     console.log(this,n,m);
+        // }
+        // let obj = {name:1};
+        // fn.call(55,1,2);
+        /* 
+        当前fn函数作为对象，找到当前所属类原型上的call方法，并且让call方法执行，
+        在call方法执行的时候给他传递实参
+        在call方法执行的时候，call内部执行了fn方法，并且让fn的this指向了call的第一个实参,然后call的实参从第二个开始就是fn执行时的实参
+        */
+
+    //     function fn(n, m) {
+    //         console.log(this,n,m);
+    //         return 111
+    //     }
+    //     let obj = {
+    //         name: 1
+    //     };
+    // //    let res = fn();
+    //   let res =  fn.call(obj,1,2); // 执行fn，并且把fn的this指向改变
+    //     console.log(res)
+        /* 
+        1、在严格模式下，如果call不传参或者传undefined，那fn的this是undefined，如果传null，那fn的this是null
+        2、在非严格模式下，call不传参或者传undefined或者传null，那fn的this是window
+        3、除了这几中情况，那fn里的this你传啥就是啥
+        */
+
+    //--------------------------------
+    // apply:他也是改变this指向的，和call一样，只不过他的第二个参数必须是一个数组或者类数组
+        // function fn(m,n){
+        //     console.log(this, m,n)
+        // }
+        // let obj = {name:1};
+        // fn.apply(obj,[1,2]);
+    //----------------------------------------------------
+    // bind:bind和call一样也是改变this指向，但是他是预处理this，并不会让fn执行，bind的返回值是一个改变this之后的函数
+    // function fn(){
+    //     console.log(this)
+    // }
+    // let obj = {name:1};
+    // fn = fn.bind(obj);
+    // fn()
+
+        function fn(){
+            console.log(this)
+        }
+    btn.onclick = fn.bind(window)
+    </script>
+</body>
+
+</html>

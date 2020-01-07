@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       /* 
+       原型继承：继承公有和私有
+       中间类继承：继承公有
+       call继承：继承私有
+       */ 
+      function A(){
+          this.a = 10;
+      }
+
+      function B(){
+          /* 
+          默认生成一个空对象(当前实例)
+          让当前this指向这个对象(this就是当前实例)
+          */
+         // 构造函数里的this是当前实例
+          this.s = 100;
+          A.call(this); // 让A函数以普通函数身份运行，并且把A函数的this指向了当前类B的实例
+      }
+      let f1  = new B;
+      console.log(f1)
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        利用Object.prototype.toString.call()完成数据类型检测
+        Object.prototype.toString.call(被检测的实例)
+        他的返回值是一个 '[object 当前被检测实例的所属类]'
+        局限性：
+            1、不能够检测自定义类创建的实例的数据类型
+
+        */
+    //    let obj = {};
+    //    function fn(){};
+    //    console.log(({}).toString === Object.prototype.toString);
+    //    console.log(Object.prototype.toString.call([1,2]));
+    //    console.log(Object.prototype.toString.call({}));
+    //    console.log(Object.prototype.toString.call(1));
+    //    console.log(Object.prototype.toString.call(null));
+    //    console.log(Object.prototype.toString.call(undefined));
+    //    console.log(Object.prototype.toString.call('ww'));
+    //    console.log(Object.prototype.toString.call(/^\d$/));
+    //    console.log(Object.prototype.toString.call(fn));
+
+    // function Fn(){}
+    // let f1 =new Fn();
+    // // console.log(Object.prototype.toString.call(f1));
+    // console.log(({}).toString.call(1)) // Number
+    // console.log(({}).toString.call(1) === '[object Number]') // true
+    </script>
+</body>
+</html>

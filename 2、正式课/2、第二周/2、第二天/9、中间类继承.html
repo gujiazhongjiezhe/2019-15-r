@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /* 
+        中间类继承：继承公有
+        // arguments虽然不是Array的实例，不能用Array原型上的方法，但是可手动把arguments的__proto__指向Array的原型，这样就可以使用Array原型上的方法了，这种继承就是中间类继承
+        */
+        function fn(){
+            // arguments虽然不是Array的实例，不能用Array原型上的方法，但是可手动把arguments的__proto__指向Array的原型，这样就可以使用Array原型上的方法了，这种继承就是中间类继承
+            // console.log(arguments instanceof Array);
+                // arguments.__proto__ = Array.prototype;
+                arguments.__proto__ = [].__proto__;
+                arguments.sort((a,b)=>b-a);
+                arguments.push(99);
+                console.log(arguments)    
+        }
+        fn(1,2,3)
+
+    </script>
+</body>
+</html>

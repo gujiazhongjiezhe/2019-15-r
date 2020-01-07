@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn(n,m,x) {
+        //     console.log(this,n,m,x);
+        // }
+        // let obj = {
+        //     name: 1
+        // };
+        // // 让fn执行，并且把fn的this指向obj
+        // // obj.x = fn;
+        // // obj.x();
+        // // delete obj.x
+
+        // Function.prototype.myCall = function (context,...arg) {
+        //     // context-->obj     this-->fn
+        //     context = context || window;
+        //     let res = null;
+        //     context.x = this; // obj.x = fn;
+        //     res =  context.x(...arg); // obj.x();
+        //     delete context.x; //delete obj.x 
+        //     return res;
+        // }
+        // // fn.call(obj,1,2,3)
+        // fn.myCall(obj,1,2,3)
+
+        function fn(n, m, x) {
+            console.log(this, n, m, x);
+            return 123456;
+        }
+        let obj = {
+            name: 1
+        };
+        // fn.call(obj);
+
+        // obj.fn = fn;
+        // obj.fn();
+        // delete obj.fn;
+        Function.prototype.myCall = function (context, ...arg) {
+            // context -->obj   this-->fn
+            context = context || window;
+            let res = null;
+            context.fn = this;
+            res = context.fn(...arg);
+            delete context.fn;
+            return res
+        }
+        console.log(fn.myCall(obj, 1, 2, 3))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        1、原型继承:不仅继承私有属性，还继承公有属性
+        2、让类B的原型指向类A的实例，类B的实例不仅可以继承类A实例的私有属性，还可以继承类A实例的公有属性
+        */
+        function A(){
+            this.a = 10;
+        };
+        A.prototype.say = function(){
+            console.log('haha')
+        };
+
+        function B(){}
+
+        B.prototype = new A;
+
+        let f1 = new B;
+        console.log(f1.a)
+        f1.say()
+       
+
+    </script>
+</body>
+</html>

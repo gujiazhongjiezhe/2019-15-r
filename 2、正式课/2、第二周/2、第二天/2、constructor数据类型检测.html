@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        利用constructor实现数据类型检测
+        判断当前实例的constructor属性值是不是你预估的类
+        但是他也有局限性:
+            1、不能够给当前类的原型进行重定向，这样就造成数据类型检测的不准
+            2、不能够给当前实例增加私有属性constructor，这样也会造成检测的结果不准
+        */
+        // function Fn(){
+
+        // }
+        // let f1 = new Fn(); //{__proto__}
+
+        // console.log(f1.constructor === Fn) // true
+        // let obj = {};
+        // console.log(obj.constructor === Fn) // false
+        // let ary = [1,2,3];
+        // console.log(ary.constructor === Array) // true
+
+
+
+        //---------------------------------------------------
+        // function Fn(){
+
+        // }
+        // Fn.prototype = {__proto__};
+        // let f1 = new Fn();
+        // console.log(f1.constructor === Fn) // false
+
+        
+        // function Fn(){
+
+        // }
+        // let f1 = new Fn();
+        // f1.constructor = 1; // 给当前实例增加私有属性
+        // console.log(f1.constructor === Fn); // false
+    </script>
+</body>
+</html>
