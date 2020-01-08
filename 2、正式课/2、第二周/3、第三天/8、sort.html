@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        sort的原理
+        */
+    //    let ary = [23,45,12,45,12,56,13];
+    //    ary.sort((a,b)=>{
+    //        console.log(a,b) // a代表后一项  b代表前一项
+    //        // 如果a-b大于0，就交换位置
+    //     // return b-a
+    //    })
+        let ary = [{age:23},{age:45},{age:12},{age:56},{age:13}];
+        ary.sort((a,b)=>{
+            // console.log(a,b)
+            return a.age - b.age
+        })
+        console.log(ary)
+    </script>
+</body>
+</html>

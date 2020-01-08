@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script src="./utils.js"></script>
+    <script>
+        console.log(utils)
+        let divs = document.getElementsByTagName('div');
+        /* 
+        类数组转数组
+        */
+
+        // function fn(){
+        //     // console.log(arguments)
+        //     // 1、利用for循环
+        //     // let ary = [];
+        //     // for (var i = 0; i < arguments.length; i++) {
+        //     //    ary.push(arguments[i])
+        //     // }
+
+        //     // 2、利用call改变this指向
+        //         [1,2,3,4].slice()
+        //         let ary = Array.prototype.slice.call(arguments); // 在IE8以下不兼容   
+        // }
+        // fn(1,2,3,4,5,6,7)
+
+
+        // try{
+        //     console.log(a);
+        //     console.log(1);
+        //     // try里的代码如果报错了，那就走catch里的代码，如果不报错，那catch里的代码不会执行
+        // }catch(e){
+        //     console.log(e)
+        //     console.log(2);
+        // }
+
+        // function toArray(likeAry) {
+        //     // likeAry 就是你传进来的类数组
+
+        //     let ary = []; // 创建一个数组
+        //     try {
+        //         // slice内部操作的是this，利用call改变slice的this指向，指向当前的类数组，在利用slice可以克隆的特点，就会得到一个克隆之后的新数组
+        //         ary = Array.prototype.slice.call(likeAry);
+        //     } catch (e) {
+        //         console.log(e); // 输出报错信息
+        //         // 把类数组循环一遍，在把类数组的每一项push到ary中
+        //         for (var i = 0; i < likeAry.length; i++) {
+        //             ary.push(likeAry[i])
+        //         }
+        //     }
+            
+        //     return ary;
+        // }
+
+        // console.log(toArray(divs))
+
+        // function fn(){
+        //     console.log(toArray(arguments))
+        // }
+        // fn(1,2,3,4,5,6,7)
+
+        console.log(utils.toArray(divs))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        1、数据类型检测
+        2、枚举属性
+        3、call、apply、bind
+        4、继承四种
+         */
+
+        /* 
+         1、数据类型检测：typeof  instanceof  constructor  Object.prototype.toString.call()
+
+         typeof:
+            1、不能区分普通对象、数组、null，因为他们的返回值都是 'object'
+            2、返回值是一个字符串，字符串里的内容就是数据类型
+        instanceof:
+            1、不能检测基本的值，(用字面量方式创建的有可能是基本值)
+            2、实例   instanceof  类   true  false
+            3、只要类的原型出现在了被检测实例的原型链上，那就返回true
+        constructor：
+            1、不能给实例增加constructor
+            2、不能给当前实例所属类的原型重定向
+            3、实例.constructor === 类
+        Object.prototype.toString.call()
+
+            1、不能够检测自定义的类  '[object Object]'
+            2、返回值是 '[object 被检测实例所属的类]'
+          */
+        //  let obj = {}
+        //  console.log( Object.prototype.toString.call(obj));
+        //  console.log( Object.prototype.toString.call([]));
+        // function Fn(){};
+        // let f1 = new Fn();
+        // console.log(f1 instanceof Fn);
+        // console.log(f1 instanceof Object);
+
+        //-----------------------------------------
+        // 枚举属性
+        // 可枚举属性：对象的私有属性，给类的原型上手动增加的公有属性
+        // 不可枚举属性：天生自带的属性就是不可枚举属性
+        //     let obj = {
+        //         name:1,
+        //         age:2
+        //     };
+        // Object.prototype.ss = 1;
+        // Array.prototype.aa = 2;
+        // for(var key in obj){
+        // if(obj.hasOwnProperty(key)){
+        //     console.log(key)
+        // }
+        //     
+        // }
+
+        //---------------------------------------------------------
+        // call、apply、bind
+        // function fn(n,m){
+        //     console.log(this,n,m);
+        //     return 123456
+        // }
+        // let obj = {name:1}; // {name:1,fn:f}
+        // obj.fn = fn;
+        // obj.fn();
+        // delete obj.fn
+        // fn()
+        // console.log(fn.call(obj,1,2))
+
+        // fn.apply(obj,[1,2])
+
+        // bind:预处理this,不会让fn执行，他的返回值是改变this之后的函数
+
+        // fn = fn.bind(obj)
+        // fn(1,2)
+
+        //---------------------------------------------------------
+        // 类的继承
+        /* 
+        1、原型继承：继承公有和私有
+        2、中间类继承：继承了公有
+        3、call：继承私有
+        4、寄生混合继承：继承公有和私有
+        */
+
+        // function A(){}
+        // function B(){}
+        // B.prototype = new A;
+        // let f1 = new B();
+
+        // f1-->类A的实例-->A.prototype-->Object.prototype
+
+        // function fn(){
+        //     arguments.__proto__ = Array.prototype;
+        //     arguments.push(99)
+        //     console.log(arguments)
+
+        // }
+        // fn(1,2,3,4)
+
+        // function A(){
+        //     this.a = 10;
+        // }
+        // function B(){
+        //     /* 
+        //     this->当前的实例
+        //     */
+        //     this.s = 100;
+        //     A.call(this);
+        // }
+        // let f1 = new B() // 
+        // console.log(f1)
+        //         let obj = {name:1}
+        //    console.log(Object.keys({name:1,age:2})) // 把对象的所有属性名放到一个数组里
+        //    console.log(Object.values({name:1,age:2})) // 把对象的所有属性值放到一个数组里
+        //    console.log(Object.create(obj))
+        //    // 他俩放在Object的私有属性上
+        //     console.dir(Object)
+
+        //     console.log(Object.hasOwnProperty('keys'))
+
+        // function A() {
+        //     this.a = 10;
+        // }
+        // function B(){
+        //     this.s = 100;
+
+        //     A.call(this);
+        // }
+        // B.prototype = Object.create(A.prototype);
+        // B.prototype = A.prototype;
+        // let f1 = new B(); // {s:100,a:10}
+        // f1-->{}-->A.prototype-->Object.prototype
+        // B.prototype.sss = function(){}
+        // f1.__proto__.dd = function(){}
+
+
+    </script>
+</body>
+
+</html>

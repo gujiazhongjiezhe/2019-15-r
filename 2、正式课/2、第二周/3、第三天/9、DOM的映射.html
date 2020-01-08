@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            width: 500px;
+            border: 1px solid red;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        li {
+            line-height: 30px;
+            font-size: 20px;
+            border-bottom: 1px solid black
+        }
+
+        button {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+        <li>34</li>
+        <li>12</li>
+        <li>67</li>
+        <li>23</li>
+        <li>67</li>
+    </ul>
+    <button id="btn">排序</button>
+    <script src="./utils.js"></script>
+    <script>
+        /* 
+        DOM的映射
+        */
+        // 1、想操作谁就获取谁
+        
+        let btn = document.getElementById('btn');
+        let list = document.getElementsByTagName('li');
+        let box = document.getElementById('box');
+        list = utils.toArray(list); // 把类数组转数组
+        let flag = -1; // 创建一个标识，用来记录排序的规则
+
+        btn.onclick = function () {
+            flag *= -1; // 每点击一次就让flag乘以-1
+            list.sort((a, b) => {
+                return (a.innerHTML - b.innerHTML) * flag //  (a-b)*-1  -a+b  b-a
+            });
+
+            // 你先把这些DOM元素存储在js的文档碎片中，最后把这个文档碎片插入到页面中
+            // let ss = document.createDocumentFragment(); // 创建文档碎片
+            for (var i = 0; i < list.length; i++) {
+                //    ss.appendChild(list[i]) // list[i] 代表每一个DOM元素
+                box.appendChild(list[i]);
+            }
+            // console.log(ss)
+            // box.appendChild(ss)
+        }
+
+        // DOM的映射：页面中的标签和js中的DOM的元素对象存在一一映射关系，只要操作js中的DOM元素，那页面中的标签也会跟着变动
+
+        // DOM的回流：如果页面中的标签改变大小、删除标签，那其他的标签的位置会发生变化，浏览器得重新计算每一个标签的位置，这样会非常耗性能，这就是DOM的回流
+
+        // DOM的重绘：如果你要改变一个元素的背景颜色、字体大小、透明度之类的属性，不会引起DOM的回流，但是浏览器把这个元素进行重新的绘制，这就是DOM的重绘
+    </script>
+</body>
+
+</html>

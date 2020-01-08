@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        call面试题
+         */
+        // function fn1() {
+        //     console.log(1)
+        // }
+
+        // function fn2() {
+        //     console.log(2)
+        // }
+        // fn1.call(fn2); // 1
+        // fn1.call.call(fn2); //2 不管前边有多少call，他执行的是最后一个call方法
+        // Function.prototype.call(fn1); // 
+        // Function.prototype.call.call(fn1); // 
+
+        function myCall(context){
+            // contetx  -->obj     this-->fn
+
+            // context.fn = this
+            // context.fn()
+
+
+
+            /* 
+            fn1.call(fn2);
+            context-->fn2    this-->fn1
+            context.fn = this     fn2.fn=fn1
+            context.fn()          fn2.fn()   // fn1()
+            */
+
+            /* 
+            fn1.call.call(fn2)
+            context-->fn2   this--> fn1.call-->call
+
+            context.fn = this     fn2.fn = call
+            context.fn()          fn2.fn()    //call()
+            */
+
+            /* 
+            context-->window   this-->fn2
+
+            context.fn = this    window.fn=fn2
+            context.fn()         window.fn()   // fn2()
+            
+            */
+        }
+        Function.prototype.myCall = myCall;
+        fn.myCall(obj)
+
+
+        // fn1.call.call(fn2);
+        //   call.call
+    </script>
+</body>
+
+</html>
