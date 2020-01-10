@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="box"></ul>
+    <script>
+        /* 
+        数据渲染：
+        let ary = [{ttile:1},{ttile:2},{ttile:3},{ttile:4}]
+        */
+        let ary = [{
+            ttile: 1
+        }, {
+            ttile: 2
+        }, {
+            ttile: 3
+        }, {
+            ttile: 4
+        }];
+        // 1、appendChild
+            // for (var i = 0; i < ary.length; i++) {
+            //    let li = document.createElement('li');
+            //    li.innerHTML = ary[i].ttile;
+            //    li.className = 'a';
+            //    box.appendChild(li);
+            //    // 每操作页面dom一次就会引起dom的回流，消耗性能
+            // }
+
+
+        // 2、createDocumentFragment :文档碎片
+            // 他就是js中存放dom元素的一个容器
+            // 把动态生成dom元素增加到容器中，最后把容器中的所有东西放到页面中
+            // let frg = document.createDocumentFragment(); // 
+            // for (var i = 0; i < ary.length; i++) {
+            //     var li = document.createElement('li');
+            //     li.innerHTML = ary[i].ttile;
+            //     li.className = 'a';
+            //     frg.appendChild(li);
+            //     // 他也操作dom，只不过只操作一次
+            // }
+            // box.appendChild(frg)
+
+
+        // 3、字符串拼接
+            // 利用innerHTML可以识别字符串的标签
+            // let htmlStr = '';
+            // for (var i = 0; i < ary.length; i++) {
+            //     htmlStr+= '<li>'+ ary[i].ttile+ '<button>'+ary[i].ttile +'</button>'+'</li>'
+            // }
+            // box.innerHTML = htmlStr;
+
+        // 4、模板字符串
+            // let htmlStr = ``;
+            // for (var i = 0; i < ary.length; i++) {
+            //     htmlStr += `
+            //     <li class="a">
+            //         ${ary[0].ttile}
+            //         <button>${ary[0].ttile}</button>
+            //     </li>`
+            // }
+            // box.innerHTML = htmlStr;
+
+        // 之前大家都是使用字符串拼接进行数据渲染，后来有了模板字符串，人们就都开始使用模板字符串进行数据渲染了
+
+    </script>
+</body>
+
+</html>

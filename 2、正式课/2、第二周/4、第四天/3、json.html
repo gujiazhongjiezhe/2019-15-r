@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        JSON是一种数据格式，不是数据类型
+
+        前端要给后台发送数据请求，后台返回给前端数据，返回的数据格式一般情况下都是JSON数据格式的
+
+        后端：数据的增删改查
+        */
+    //    JSON格式的对象
+    //    JSON格式的字符串
+
+    //    let obj = {"name":'11'}; // JSON格式的对象
+    //    console.log(obj.name)
+
+    // let obj = '{"name":"11"}'; // JSON格式的字符串
+    // console.log(obj.name)
+
+    // JSON.parse() // 把JSON格式的字符串转化JSON格式的对象
+    // JSON.stringify() // 把JSON格式的对象转化为JSON格式的字符串
+
+    // console.log(window.JSON)
+
+    // let obj = '{"name":"11"}';
+    // let obj1 = JSON.parse(obj); // 把JSON格式的字符串转化JSON格式的对象
+    // obj1 = JSON.stringify(obj1); // 把JSON格式的对象转化为JSON格式的字符串
+    // console.log(obj1);
+
+    //-------------------------------------------------------------
+    // 深克隆 浅克隆
+    // 浅克隆：如果对象的值是引用数据类型，那克隆的是空间地址，
+    // let ary = [[11111],2,3];
+    // let ary1 = [...ary]; // 浅克隆:克隆的空间地址
+    // ary[0][0] = 2222;
+
+    // console.log(ary);
+    // console.log(ary1); // [af0, 2,3]
+
+//     let ary = [[11111],2,3];
+
+//    let ary1 =  JSON.parse(JSON.stringify(ary)); // 深克隆:克隆的是值
+//    ary[0][0] = 2222;
+//    console.log(ary);
+//    console.log(ary1);
+
+    </script>
+</body>
+</html>
