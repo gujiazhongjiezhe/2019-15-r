@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        class创建自定义类
+        class创建的类不能当做普通函数执行
+         */
+        // function Fn(m,n){
+        //     let s = m+n;
+        //     this.r = s
+        // }
+        // Fn.prototype.say = function(){
+        //     console.log('haha')
+        // }
+        // Fn.ss = 666; // 把函数当做对象增加键值对
+
+        // let f = new Fn(1,2) // {r:3}
+        // console.log(f);
+
+        // class Fn {
+        //     constructor(n,m){
+        //         // 实例的私有属性
+        //         let s = m+n;
+        //         this.r = s
+        //     };
+        //     say(){ // 给实例增加公有属性
+        //         console.log('haha')
+        //     }
+
+        //     s = 10; //给实例增加私有属性
+        //     static y = 100; // 把Fn当做对象增加键值对
+        // }
+        // let f = new Fn(1,2);
+        // console.log(f)
+        // let f1 = Fn() // 报错
+
+
+
+
+            // function Fn(n,m){
+            //     n = n|| 0;
+            //     m = m || 0;
+            //     this.m = m;
+            //     this.n = n;
+            // }
+
+            // Fn.prototype.say = function(){
+            //     console.log('say');
+            // };
+            // Fn.eat = function(){
+            //     console.log('eat');
+            // };
+
+                class Fn{
+                    constructor(n,m){
+                        n = n|| 0;
+                        m = m || 0;
+                        this.m = m;
+                        this.n = n;
+                    }
+                    say(){
+                        console.log('say'); 
+                    }
+                    static eat = function () {
+                        console.log('eat');
+                    }
+                }
+
+                let f = new Fn(1,2);
+                f.say()
+
+    </script>
+</body>
+
+</html>

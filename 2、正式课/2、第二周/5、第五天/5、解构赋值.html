@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        解构赋值：
+        在保证左右结构一样的前提下，把右边的值赋值给左边的变量
+        解构数组时左右两边的顺序保持一致，对象不需要
+         */
+
+        //  let {age,name,ss} = {name:1,age:2};
+        //  console.log(name, age,ss); // 1 2 un
+
+        // let obj = {name:1,age:{ss:1,r:{e:9}}};
+        // let {name,age:{ss,r:{e}}} = obj;
+        // console.log(name, ss, e) // 1 1 9
+
+        // let {name=9,ss=1} = {name:1, age:2} // 可以给左边的变量赋默认值
+        //     console.log(name, ss)// 1 1
+
+        // let {nam:ss} = {nam:1}; // 创建变量名ss，并且把nam的值赋值给ss
+        // console.log(ss, nam) // 1 报错
+
+        //====================
+
+        // let ary = [1,2,3,4,5,6];
+        // let [n,,,,,m] = ary;
+        // console.log(n,m) // 1 6
+
+        // let ary  =[1,2,3,[6,8]];
+        // let [,,n,[,m]] = ary
+        // console.log(n,m)
+        // // n=3,m=8
+
+        // let obj = {
+        //     name:'xiaoMing',
+        //     friends:['1', '2', '3']
+        // }
+
+        // let {name,friends:[,,ss]} = obj
+        // // let name = obj.name;
+        // // let ss = obj.friends[2]
+        // console.log(name,ss)
+        // // name='xiaoMing'  ss = '3'
+
+
+        // let ary = [1,2,3,4,5];
+        // let [,m,...s] = ary;
+        // console.log(m,s) // 2 [3,4,5]
+        // // m = 2   s = [3,4,5]
+
+        // function fn({name,age} = item){
+        //     console.log(name,age)
+        // }
+        // fn({name:1, age:2})
+    </script>
+</body>
+</html>

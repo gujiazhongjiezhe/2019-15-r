@@ -10,16 +10,20 @@
 
 <body>
     <script>
+        /* 
+        Foo = f
+        getName =  log(1)
+         */
         function Foo() {
             getName = function () {
                 console.log(1);
             };
             return this;
         };
-        Foo.getName = function () {
+        Foo.getName = function () { // 给Foo对象增加方法
             console.log(2);
         };
-        Foo.prototype.getName = function () {
+        Foo.prototype.getName = function () { // 给Foo原型增加方法
             console.log(3);
         };
         var getName = function () {
@@ -30,13 +34,13 @@
             console.log(5);
         };
 
-        Foo.getName();
-        getName();
-        Foo().getName();
-        getName();
-        new Foo.getName();
-        new Foo().getName();
-        new new Foo().getName();
+        Foo.getName(); // 2
+        getName(); // 4
+        Foo().getName(); //  1 
+        getName(); // 1
+        new Foo.getName(); // 2
+        new Foo().getName(); // 3
+        new new Foo().getName(); // 3
 
         /* 
         运算优先级：

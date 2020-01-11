@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        原型的扩展
+        原型的重定向
+        函数的三种角色
+        数据类型检测
+        枚举属性
+        call、apply、bind
+        原型的继承
+        类数组转数组
+        最大值
+        平均数
+         */
+         // 给数组的原型增加去重方法
+        //  Array.prototype.myUnique = function(){
+             // this-->当前实例
+            //  let ary = [];
+            //  let obj = {};
+            //  for (var i = 0; i < this.length; i++) {
+            //     obj[this[i]] = this[i]
+            //  }
+            // //  console.log(obj)
+            //  for(var key in obj){
+            //      ary.push(obj[key])
+            //  }
+            //  return Object.values(obj)
+
+
+            // =================================
+        //     let obj = {};
+        //     for (var i = 0; i < this.length; i++) {
+        //         if(obj[this[i]] !==undefined){
+        //             this[i] = this[this.length-1];
+        //             this.length--;
+        //             i--;
+        //         }
+        //         else {
+        //             obj[this[i]] = this[i]
+        //         }
+        //     }
+        //     return this
+        //  }
+        //  let ary = [1,2,3,4,1,2,3,4,5];
+        //  console.log(ary.myUnique())
+
+
+
+
+        // Array.prototype.push = function(){
+        //     console.log(11)
+        // }
+        // let ary = [1,2];
+        // ary.push(1);
+        // console.log(ary)
+    // ====================================
+        // 原型的重定向：
+        // 1、内置类的原型不能重定向
+        // 2、重定向之后的原型没有constructor
+    //========================================================
+    // 函数的三种角色
+            /* 
+            1、函数：普通函数、类
+            2、对象：普通对象、原型、实例、数组、正则、Math、函数
+
+            函数的三种角色：
+            1、普通函数：
+                1、实参、形参、arguments、return
+                2、形成私有作用域、形参赋值、变量提升、代码执行、作用域是否销毁
+                3、形参也是私有变量，在私有作用域里创建的变量
+            2、构造函数：
+                1、构造函数里的this是当前实例
+                2、实例是对象数据类型的
+                3、构造函数是函数数据类型的
+                4、构造函数的运行：
+                    形成私有作用域-->形参赋值、变量提升-->初始化当前实例-->让this指向当前实例-->代码执行-->默认把当前实例return出去-->作用域是否销毁
+                5、构造函数执行时，执行函数前加new，如果不传实参，可以省略小括号，
+                6、如果手动return一个基本值，不会改变构造函数的返回值，如果手动return引用值，那构造函数的返回值会被改变
+
+            3、对象：
+                name:当前函数的名字
+                length：当前函数形参的个数
+             */
+
+            //  function Fn(n,m){
+            //      this.m = m;
+            //      this.n = n;
+            //  }
+            //  console.dir(Fn)
+            //  let f1 = new Fn(1,2); // {m:1,n:2}
+        //====================================
+        // 数据类型检测
+                // typeof
+                // instanceof
+                // constructor
+                // Object.prototype.toString.call()
+            /* 
+            1、typeof： typeof 实例     
+                1、返回一个字符串，里边存储的是当前实例的数据类型
+                2、不能区分null、普通对象、数组
+            2、instanceof： 实例  instanceof  类
+                1、如果当前实例属于这个类，返回true，反之返回false
+                2、不能够检测基本值，
+                3、只要当前类的原型出现在当前实例的原型链上，就返回true
+            3、constructor：
+                1、实例.constructor === 类  
+                2、如果相等，证明当前实例属于这个类
+                3、不能够重定向当前类的原型
+                4、不能够给当前实例增加私有属性constructor
+            4、Object.prototype.toString.call(实例)
+                1、 '[object 当前实例的所属类]'
+                2、不能够检测自定义类创建的实例  '[object Object]'
+             */
+
+            // ===============================
+            // call、apply、bind
+            /* 
+            1、call：让实例执行，并且改变实例的this指向
+            2、apply：和call一样，但是第二个参数必须是数组或者类数组
+            3、bind：预处理实例的this，他并不会让当前实例执行，他的返回值是改变this之后的实例
+             */
+            //  function fn(m){
+            //      console.log(this,m)
+            //  }
+            //  let obj = {name:1};
+            // //  fn.call(obj,1)
+            // fn = fn.bind(obj);
+            // fn()
+        
+    </script>
+</body>
+</html>

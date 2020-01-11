@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        class类继承
+         */
+        class A{
+            constructor(m){
+                this.a = m
+            }
+            say(){
+                console.log('say')
+            }
+        }
+        class B extends A{
+            constructor(){
+                super(333); // 继承类A的私有属性,必须写在第一行
+                this.s = 100; 
+            }
+        }
+
+        let f = new B;
+        // f-->B.prototype-->A.prototype-->Object.prototype
+        console.log(f)
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        Foo = f
+        getName =  console.log(1)
+         */
+        function Foo() {
+            getName = function () {
+                console.log(1);
+            };
+            return this;
+        };
+        Foo.getName = function () { // 把Foo当做对象增加键值对
+            console.log(2);
+        };
+        Foo.prototype.getName = function () { // 给Foo的原型增加方法
+            console.log(3);
+        };
+        var getName = function () {
+            console.log(4);
+        };
+
+        function getName() {
+            console.log(5);
+        };
+
+        Foo.getName(); // 2
+        getName(); // 4
+        Foo().getName(); // 1 
+        getName(); // 1
+        new Foo.getName(); // 2  // 先执行 Foo.getName
+        new Foo().getName(); // 3 // 先执行 new Foo() 
+        new new Foo().getName(); // 3  // 先执行 new Foo()
+    </script>
+</body>
+
+</html>

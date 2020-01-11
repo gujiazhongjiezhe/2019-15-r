@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        原型的继承: 继承私有和公有
+        中间类继承：继承公有
+        call继承：继承私有
+        寄生混合继承：继承公有和私有
+         */
+
+        //  function A(){
+        //      this.a = 100;
+        //  }
+        //  A.prototype.say = function(){
+
+        //  }
+
+        //  function B(){};
+        //  B.prototype  = new A; // 让类B的原型指向类A的实例
+
+        //  f-->A的实例-->A.prototype-->Object.prototype
+
+        //  let f = new B;
+   //===================================
+
+        //      function fn(){
+        //         arguments.__proto__ = Array.prototype;
+        //         arguments.push(666)
+        //         console.log(arguments)
+        //      }
+        //      fn(1,2,3,4,5)
+        //====================================
+        // function A(){
+        //     this.a = 100;
+        // }
+
+        // function B(){
+        //     this.b = 10;
+        //     A.call(this);
+        // }
+        // let f = new B;
+        // console.log(f) //{b:10,a:100}
+        //=======================================
+        // let obj = {name:1}
+        //    let s =  Object.create(obj);
+        //    console.log(s)
+
+        // function A(){
+        //     this.a = 100;
+        // }
+
+        // function B(){
+        //     this.b = 10;
+        //     A.call(this);
+        // }
+        // B.prototype = Object.create(A.prototype);
+        // let f = new B;
+        // // f-->{}-->A.prototype-->Object.prototype;
+        // f.__proto__.constructor = B;
+        // console.log(f) //{b:10,a:100}
+        // console.log(f.__proto__)
+
+        //==========================
+        /* 
+        最大值：
+         */
+
+        //      let ary = [1,2,3,4,6,4,3,2,5];
+
+        //      // 1、利用sort排序
+        //         //  ary.sort((a,b)=>b-a)
+        //         //  console.log(ary[0])
+
+        //     // 2、Math.max
+        //     console.log(Math.max(...ary))
+        //     console.log(Math.max.apply(null, ary))
+        // // 3、两两进行比较
+
+        // function fn() {
+        //     let ary = [];
+        //     try {
+        //         ary = Array.prototype.slice.call(arguments);
+        //     } catch (e) {
+        //         for (var i = 0; i < arguments.length; i++) {
+        //             ary.push(arguments[i])
+        //         }
+        //     }
+        //     // ary = [...arguments]
+        //     return ary
+        // }
+        // fn(1, 2, 3, 3, 4, 5, 6)
+    </script>
+</body>
+
+</html>
