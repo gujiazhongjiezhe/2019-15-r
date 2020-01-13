@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /* 
+        正则的正负向预查：
+        (?=):正向预查
+        (?!)：负向预查
+    */ 
+   // 正向预查
+        //  let reg = /zhufeng(?=peixun)/; // zhufeng后面必须跟着peixun才能匹配成功
+        //  console.log(reg.test('zhufengpeixunwwwwwww')); // true
+
+        
+    // 负向预查：
+        // let reg = /zhufeng(?!peixun)/;// zhufeng后面必须不跟着peixun才能匹配成功
+        // console.log(reg.test('zhufengwwwwwww')) // true
+
+        // console.log(reg.test('zhuengwwwwwww')) // false
+
+
+    </script>
+</body>
+</html>

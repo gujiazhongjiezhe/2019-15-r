@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        正则匹配的应用：
+        1、匹配有效数字
+        2、密码
+        3、匹配名字
+        4、匹配身份证号码
+        */
+
+        /* 
+        匹配有效数字
+        2 2.5 -2.5 +2.5 0 2.4
+        1、+-可有可无，而且在开头， [+-]?
+        2、有可能是一位数，也有可能是多位数   \d   [1-9]\d+
+        3、小数     (\.\d+)?
+
+        */
+        //    let reg = /^[+-]?(\d|[1-9]\d+)(\.\d+)?$/;
+        //    console.log(reg.test('3.5')); // true
+        //    console.log(reg.test('+3.5'));// true
+        //    console.log(reg.test('-3.5'));// true
+        //    console.log(reg.test('3'));// true
+        //    console.log(reg.test('353'));// true
+        //    console.log(reg.test('3.5.2'));// false
+        //    console.log(reg.test('3.5.')); // false
+
+
+        /* 
+        密码：
+        1、6到18位
+        2、数字、字母、下划线
+        */
+        // let reg = /^\w{6,18}$/;
+
+        // function fn(str) {
+        //     if (str.length < 6 || str.length > 18) {
+        //         alert('密码不符合要求');
+        //         return
+        //     }
+        //     let ary = ['0', '1', 'a', '_', '...'];
+        //     for (var i = 0; i < str.length; i++) {
+        //         if (ary.includes(str[i])) {
+        //             alert('密码不符合要求')
+        //             return
+        //         }
+        //     }
+        // }
+
+        /* 
+        匹配名字
+        宋小宝
+        爱新觉罗·溥仪
+        阿诺德·施瓦辛格·溥仪
+        */
+    //    let reg = /^[\u4E00-\u9FA5]{2,6}(·[\u4E00-\u9FA5]{1,6}){0,2}$/;
+    //    console.log(reg.test('爱新觉罗·溥仪')) // true
+    //    console.log(reg.test('阿诺德·施瓦辛格·溥仪')) // true
+    //    console.log(reg.test('阿·施瓦辛格·溥仪')) // false
+
+        /* 
+        身份证号
+        1、18位
+        2、前六位：省市区
+        3、7到14位是生日
+        4、最后四位
+            前两位：同年同月同日生的排序
+            第三位：奇数是男孩，偶数是女孩
+            最后一位：有可能是数字，还有可能是X
+
+            年 [1-2]/d{3}
+            月 01-09      10-12  1[0-2]
+            日 01-09   10-29   30-31
+        */
+       let reg = /^\d{17}(\d|X)$/;
+       let reg1 = /^(\d{6})(\d{8})(\d{2})(\d{1})(?:\d|X)$/;
+       let reg2 = /^(?:\d{6})([1-2]\d{3})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])(?:\d{2})(\d{1})(?:\d|X)$/
+    //    '130981 1935 06 30 6018'
+
+    // console.log(reg2.test('13098119350630601X'))
+    // console.log(reg2.test('1309813935063060182'))
+    // console.log(reg2.test('1309811935383060182'))
+    let res = reg2.exec('13098119350630601X');
+    console.log(res[1] +'年'+ res[2] +'月'+ res[3]+'日')
+    console.log(res[4]%2 === 0?'女':'男')
+    </script>
+</body>
+
+</html>

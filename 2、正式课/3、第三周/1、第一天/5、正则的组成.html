@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        正则的组成：有元字符和修饰符组成
+
+        修饰符：就是对正则起到修饰作用的
+            i：不区分大小写
+            m：多行匹配
+            g：全局匹配
+        */
+
+       /* 
+       元字符：量词元字符、特殊元字符、普通元字符
+        量词元字符：
+            *: 0到多次
+            +：1到多次
+            ?: 0到1次
+            {n}: 出现n次
+            {n,}: 至少出现n次
+            {n,m}: 出现n到m次
+
+        特殊元字符：
+            \ : 转义字符，可以把特殊的元字符转换为普通的元字符，也可以把普通元字符转换为特殊元字符
+            . :任意字符(除了换行符意外)
+            ^:以什么什么开头
+            $：以什么什么结尾
+            \n：换行符
+            \d:0到9之间的任意数字
+            \D：非0到9之间的任意数字
+            \w：数字、字母、下划线
+            \t：制表符
+            \b：单词边界
+            \s：空白符
+            x|y: x和y之间的任意一个
+            [a-z]:a到z之间的任意一个字符
+            [a-zA-Z0-9]:a到z或者A到Z或者0到9之间的任意字符
+            [^a-z]：除了a到z之外的任意一个字符
+            ():分组
+            (?:):只匹配，不捕获
+            (?=):正向预查
+            (?!):负向预查
+
+        普通元字符：
+        b
+        n
+        d
+
+
+       */
+        let reg = /\d/;
+        console.log(reg.test('aa5b'))
+    </script>
+</body>
+</html>
