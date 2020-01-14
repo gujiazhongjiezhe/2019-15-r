@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        let url = 'http://www.baidu.com?name=erYa&age=18#index';
+        利用正则捕获到所有的参数
+        name=erYa
+        let reg = /([^&#=?]+)=([^&#=?]+)/g
+        */ 
+        let url = 'http://www.baidu.com?name=erYa&age=18#index';
+        
+        // String.prototype.queryUrlParams = function queryUrlParams(){
+        //     // this-->实例
+        //     let reg = /([^&#=?]+)=([^&#=?]+)/g;
+        //     let obj = {};
+        //     this.replace(reg,function(){
+                // 从arg中解构出每一个参数的属性名和属性值，然后增加到obj中
+        //         let [,key,value] = arguments;
+        //         obj[key] = value;
+        //     })
+        //     this.replace(/#([^&#=?]+)/,function(){
+                // 从arg中解构出hash值，然后增加到obj中
+        //         let [,value] = arguments;
+        //         obj.hash = value;
+        //     })
+                // 最后别忘了把objreturn出去
+        //     return obj;
+        // }
+        // console.log(url.queryUrlParams());
+
+
+        String.prototype.queryUrlParams = function queryUrlParams(){
+            let reg = /([^&#=?]+)=([^&#=?]+)/g;
+            let obj = {};
+            this.replace(reg,(item,key,value)=>{obj[key] = value});
+            this.replace(/#([^&#=?]+)/,(item,value)=>{obj.hash = value});
+            return obj;
+        }
+        console.log(url.queryUrlParams());
+    </script>
+</body>
+</html>

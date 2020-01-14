@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        正则捕获之replace
+        */
+        // let str = 'zhufeng33zhufeng33';
+        // 我想把zhufeng替换为zhufengpeicxun
+
+        //  str = str.replace('zhufeng', 'zhufengpeixun').replace('zhufeng', 'zhufengpeixun')
+        // 'zhufengpeixunpeixun33zhufeng33' // 因为每一次替换的都是第一个zhufeng
+
+
+        // str = str.replace(/zhufeng/g, 'zhufengpeixun');
+        // // 'zhufengpeixun33zhufengpeixun33' // 这样就可以了
+        // console.log(str)
+
+
+
+        //    let str = 'zhufeng33zhufeng33';
+        //    str =  str.replace(/zhufeng/g,function(item,index){
+        //         console.log(item,index)
+        //         // console.log(arguments)
+        //         /* 
+        //         正则捕获几次，此回调函数就会执行几次
+        //         正则每一次捕获的内容会以实参的方式传递给回调函数
+        //         回调函数的返回值(return)会覆盖每一次捕获的内容
+        //         */
+        //        return 'zhufengpeixun';
+        //     });
+        // replace还会返回一个新的字符串，每一次return的值会把捕获的位置的内容给覆盖掉
+        // console.log(str) // 'zhufengpeixun33zhufengpeixun33'
+
+
+
+
+        // let str = 'good good study day day up';
+        // // 把每一个单词的首字母大写
+        // let reg = /\b([a-z])[a-z]*\b/g;
+        // // console.log(reg.exec(str))
+        // str = str.replace(reg,function(){
+        //     // console.log(arguments)
+        //     let [word, first] = arguments; // 获取每一个单词和单词的首字母
+        //     first = first.toUpperCase(); // 把首字母转大写
+        //     word = word.slice(1); // 把每一个单词的首字母去掉
+        //     // console.log(word,first)
+        //     return first + word;
+        // })
+        // console.log(str)
+
+
+
+        
+        // 把下列数字转成下面数组中的数字大写
+        // 将数字转成下面的大写
+
+        // var str ="20200114";
+        // var ary = ["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"];
+        // let reg = /\d/g;
+        // str.replace(/\d/g,(item)=>{
+        //     return ary[item]
+        // })
+
+        //    str =  str.replace(/\d/g,(item)=>ary[item]);
+        //    console.log(str)
+    </script>
+</body>
+
+</html>

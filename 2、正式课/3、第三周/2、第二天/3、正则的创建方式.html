@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+      实例的创建方式；
+      1、字面量方式创建：
+      2、构造函数:用构造函数创建的正则可以拼变量
+      */
+        // 把age变量所代表的的值插入到正则中
+        let age = 'name';
+        //  let reg = '/^'+age+'$/' ; // 这不是正则，这是普通字符串
+
+        let reg = new RegExp('w' + age + 'w'); // 利用构造函数创建正则
+        console.log(reg); // /wnamew/
+    </script>
+</body>
+
+</html>

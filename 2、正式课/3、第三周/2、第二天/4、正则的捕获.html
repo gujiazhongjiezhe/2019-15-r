@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        正则的捕获：
+        exec
+            1、返回值是一个数组
+                1、数组的第一项是捕获到的内容
+                2、从第二项开始就是从左往右以依次分组捕获的内容
+                3、index：是你第一次捕获到的内容开始位置的索引
+                4、input：原字符串
+            2、如果正则捕获捕获不到返回null
+        3、?: 只匹配不捕获
+        4、正则的懒惰型(正则默认只捕获第一次符合规则的内容)
+            给当前正则加修饰g，可以取消正则的懒惰型
+        5、正则的贪婪性：他能多捕获一个就会多捕获一个,绝对不会少捕获
+            在量词元字符后面加?，可以取消正则的贪婪性
+        */
+        //    let str = 'zhufeng33';
+        //    let reg = /\d{2}/;
+        //    console.log(reg.exec(str))
+        // ["33", index: 7, input: "zhufeng33", groups: undefined]
+
+        //    ?: 只匹配不捕获
+        //    let str = 'zhufeng3a3';
+        //    let reg = /\d(?:[a-z])\d/; 
+        //    console.log(reg.exec(str)) // 不会捕获到分组里的内容
+        // ["3a3", index: 7, input: "zhufeng3a3", groups: undefined]
+
+        // 正则的懒惰型
+        // let str = 'ww33ww68ww78';
+        // let reg = /\d{2}/g;
+        // // 原理：正则身上有一个lastIndex属性,你每捕获一次，那lastIndex的值就会被修改为下一次捕获开始的位置
+        // console.log(reg.lastIndex) // 0
+        // console.log(reg.exec(str)) 
+        // console.log(reg.lastIndex) // 4
+        // console.log(reg.exec(str))
+        // console.log(reg.lastIndex) // 8
+        // console.log(reg.exec(str))
+        // console.log(reg.lastIndex) // 12
+        // console.log(reg.exec(str))
+
+
+        // 正则的贪婪性
+        // 正则拥有贪婪性，他能多捕获一个就会多捕获一个,绝对不会少捕获
+        // let str = '123456789';
+        // let reg = /\d+?/g;
+        // console.log(reg.exec(str)) // '1'
+        // console.log(reg.exec(str)) // '2'
+
+
+        // 封装一个方法，拿到字符串中所有符合规则的内容，并且放到一个数组里
+        let str = 'ww33ww44ww55ww66ww77';
+        let reg = /\d{2}/g;
+        console.dir(reg) // 查看global
+
+        RegExp.prototype.getExec = function (str) {
+            // 正则身上有一个私有属性global，如果正则由修饰符g，那global的值就是true，反之就是false
+            if (!this.global) { // 如果当前正则没有加g，那就把第一次捕获的结果返回出去就可以了，并且代码不往下运行
+                return this.exec(str);
+            }
+            // this-->reg    str-->'ww33ww44ww55ww66ww77'
+            let ary = []; // 创建一个数组，准备接收每一次捕获到的内容
+            let res = this.exec(str); // 先捕获一次
+            while (res) {
+                ary.push(res[0]); // 把捕获到的内容push到数组里
+                res = this.exec(str); // 然后在继续进行捕获，直到捕获到null为止
+            }
+            return ary.length === 0 ? null : ary; // 如果正则捕获不到，那返回null
+        }
+
+        console.log(reg.getExec(str))
+    </script>
+</body>
+
+</html>

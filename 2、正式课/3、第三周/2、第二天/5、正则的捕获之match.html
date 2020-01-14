@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+       正则捕获之match
+       1、match他是字符串的一个方法,他是用来进行捕获的
+       2、如果正则不加g，那他的返回值和exec的返回值一样
+       3、如果加上g，那返回值是一个数组，数组里是捕获的每一项
+       4、他不能够捕获分组的内容
+       */
+        //   let str = 'ww33ww44ww55ww66';
+        //   let reg = /\s{2}/g;
+        //   console.log(str.match(reg))
+
+        // let str = 'ww{3}ww{34}';
+        // let reg = /\{(\d+)\}/g;
+        // console.log(reg.exec(str))
+        // console.log(reg.exec(str))
+        // console.log(str.match(reg))
+
+        // 我要把每一次大的捕获的内容放到一个数组里，还要把每一次分组捕获的内容放到一个数组里
+        RegExp.prototype.allExec = function allExec(str) {
+            if (!this.global) {
+                return this.exec(str)
+            };
+            let bigAry = [],
+                smallAry = [],
+                res = this.exec(str);
+            while (res) {
+                bigAry.push(res[0]);
+                smallAry.push(res[1]);
+                res = this.exec(str);
+            };
+            return bigAry.length < 1 ? null : {
+                bigAry,
+                smallAry
+            }
+        }
+        console.log(reg.allExec(str));
+        // {
+        //     bigAry:['{3}','{34}'],
+        //     smallAry:['3','34']
+        // }
+    </script>
+</body>
+
+</html>

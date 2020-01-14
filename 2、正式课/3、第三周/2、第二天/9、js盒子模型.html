@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            border: 10px solid red;
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">年初开始大V北师大女生男大V偶的口时拿出哦啊路口才能检测把数据
+            年初开始大V北师大女生男大V偶的口时拿出哦啊路口才能检测把数据
+            
+    </div>
+        <script>
+            let box = document.getElementById('box');
+            /* 
+            js盒子模型：
+            */
+
+            // 1、client系列；获取的值是一个数字
+                // clientWidth：当前元素可视区域的宽度  宽度+左右padding
+                // clientHeifht：当前元素可视区域的高度  宽度+上下padding
+                // clientLeft: 当前元素做边框的宽度
+                // clientTop: 当前元素做边框的高度
+
+                // console.log(box.clientWidth) // 240
+                // console.log(box.clientHeight) // 240
+                // console.log(box.clientLeft) // 10
+                // console.log(box.clientTop) // 10
+
+            // 2、offset系列
+                // offsetWidth:当前元素的总宽度 clientWidth+左右border
+                // offsetHeight:当前元素的总宽度 clientHeight+上下border
+
+                // console.log(box.offsetWidth) // 260
+                // console.log(box.offsetHeight) // 260
+
+            // 3、scroll系列
+                // scrollHeight: 如果当前元素的内容没有溢出，那他等clientHeight,如果内容溢出了，等于上padding+溢出的真实高度
+                // scrollWidth: 如果当前元素的内容没有溢出，那他等clientWidth,如果内容溢出了，等于左padding+溢出的真实宽度
+                console.log(box.scrollHeight)
+        </script>
+
+
+
+    
+</body>
+
+</html>

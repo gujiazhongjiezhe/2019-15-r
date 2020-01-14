@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        字符串的时间格式化
+        let time = '2020-1-14 16:55:6';
+        将其转化为 '2020年01月14日 16时55分06秒'
+        */
+        let time = '2020-1-14 16:55:8';
+        String.prototype.formatTime = function formatTime(template = '{0}年{1}月{2}日 {3}时{4}分{5}秒') {
+            /* 
+            1、利用match获取年月日时分秒放到一个数组里，准备一会获取用
+            2、写一个模板，模板里包含年月日的索引
+            3、利用replace方法捕获到模板里的索引，拿索引去数组里取对应的时间
+            4、最后return一个处理好的时间覆盖捕获位置的值
+            */
+            let timeAry = this.match(/\d+/g);
+            // ["2020", "1", "14", "16", "55"]
+            // let template = '?年?月?日 ?时?分?秒';
+            // let template = '{0}年{1}月{2}日 {3}时{4}分{5}秒';
+            template = template.replace(/\{(\d)\}/g, function () {
+                let [, index] = arguments;
+                let time = timeAry[index] || '00'; // 如果时间获取不到就默认为00
+                time = time.length < 2 ? '0' + time : time; // 如果不足两位就补零
+                return time;
+            })
+            return template;
+        }
+        console.log(time.formatTime());
+    </script>
+</body>
+
+</html>

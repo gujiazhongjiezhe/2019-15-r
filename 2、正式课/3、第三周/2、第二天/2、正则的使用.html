@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        正则的使用
+        */
+    //    let reg = /^18|29$/;
+    //    console.log(reg.test('18')); // true
+    //    console.log(reg.test('29'));// true
+    //    console.log(reg.test('189'));// true
+    //    console.log(reg.test('129'));// true
+    //    console.log(reg.test('137'));// false
+    //    console.log(reg.test('139'));// false
+
+    // let reg = /^(18|29)$/; // 利用()提高优先级
+        // ():分组
+    //    console.log(reg.test('18')); // true
+    //    console.log(reg.test('29'));// true
+    //    console.log(reg.test('189'));// false
+    //    console.log(reg.test('129'));// false
+    //    console.log(reg.test('137'));// false
+    //    console.log(reg.test('139'));// false
+
+        // \:转义
+        // let reg = /^2.8$/;
+        // console.log(reg.test('3.7')); // false
+        // console.log(reg.test('2.8')); // true
+        // console.log(reg.test('2@8')); // true
+        // console.log(reg.test('2e8')); // true
+
+        // let reg = /^2\.8$/;
+        // console.log(reg.test('3.7')); // false
+        // console.log(reg.test('2.8')); // true
+        // console.log(reg.test('2@8')); // false
+        // console.log(reg.test('2e8')); // false
+
+        // 中括号里不允许出现多位数
+        // let reg =/^[23-89]/;  // 2  3-8  9
+        // console.log(reg.test('23')); // true
+        // console.log(reg.test('2')); // true
+        // console.log(reg.test('82')); // false
+        // console.log(reg.test('90')); // false
+
+        // ():分组
+        //     1、提高优先级
+        //     2、分组引用
+        //     3、分组捕获
+
+        // let str = 'abab';
+        // let reg = /^([a-z]{2})\1$/;
+        // let reg = /^([a-z])([a-z])\1\2$/
+
+        // 手机号：
+            // 1、11位
+            // 2、以1开头，第二位是3到9中的一个
+            // let reg = /^1[3-9]\d{9}$/
+        // 密码：
+            // let reg = /^\w{6,16}$/
+        // 邮箱：
+            // 112344@qq.com
+        // let reg = /^[a-zA-Z0-9_-]+@[a-z]+(\.[a-z]){1,2}$/
+        // 名字：
+            // 宋小宝
+            // 赵四
+            // 尼古拉斯·赵四·溥仪
+            // let reg = /^[\u4E00-\u9FA5]{2,6}(·[\u4E00-\u9FA5]{2,6}){0,2}$/
+            // [\u4E00-\u9FA5]
+
+            // 身份证
+            // let reg = /^\d{17}(\d|X)$/
+            // let reg1 = /^(\d{6})(\d{8})\d{2}(\d)(?:\d|X)$/;
+            // console.log(reg1.test('13098119880215391X'))
+            // console.log(reg1.exec('13098119880215391X'))
+
+            // 01-31
+            // 01-09  0\d
+            // 10-29  [1-2][0-9]
+            // 30-31   3[0-1]
+
+            // let reg = /zhufeng(?=peixun)/ // 珠峰后面必须跟着peixun
+            // console.log(reg.test('wwwwwzhufengpeixunwwww')) // true
+            // let reg1 = /zhufeng(?!peixun)/;
+            // console.log(reg1.test('wwwwwzhufengpeixunwwww')) // false
+    </script>
+</body>
+</html>
