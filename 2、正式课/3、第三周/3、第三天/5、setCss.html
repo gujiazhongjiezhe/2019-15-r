@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" style="background-color:red;">111</div>
+</body>
+<script>
+    let box = document.getElementById('box');
+
+    /* 
+    获取css样式
+    */
+    function getCss(curEle, attr) {
+        let val = null;
+        // 考虑兼容，在谷歌下使用getComputedStyle，在IE下使用currentStyle
+        if ('getComputedStyle' in window) {
+            val = getComputedStyle(curEle)[attr]
+        } else {
+            val = curEle.currentStyle[attr]
+        }
+        let reg = /^(width|height|padding|margin|left|right|top|bottom|fontSize|opacity)$/
+        // 把获取的带单位的值的单位去掉，并且转数字
+        if (reg.test(attr)) {
+            val = parseFloat(val);
+        }
+        return val;
+    }
+
+    /* 
+    单个设置css样式
+    */
+    function setCss(curEle, attr, value) {
+        let reg = /^(width|height|padding|margin|left|right|top|bottom|fontSize)$/
+        // 先判断一下当前的属性名对应的值需不需要单位
+        if (reg.test(attr)) {
+            // 在判断你到底有没有给加单位，如果没有，就给加上
+            if (typeof value === 'number') {
+                value = value + 'px';
+            }
+        }
+        curEle.style[attr] = value;
+    }
+    // setCss(box,'width',1000);
+    // setCss(box,'height','800px');
+    // setCss(box,'opacity',0.1);
+
+    /* 
+    批量设置css样式
+    */
+    function setGroupCss(curEle, obj) {
+        // 对象有几个键值对就调用几次setCss方法，
+        for (var key in obj) {
+            setCss(curEle, key, obj[key])
+        }
+    }
+    // setGroupCss(box, {
+    //     width: 600,
+    //     height: 600,
+    //     backgroundColor: 'orange'
+    // })
+
+    /* 
+    可以获取、批量设置、单个设置css样式
+    */
+    function css() {
+        let [curEle, attr, value] = arguments;
+        // 如果传参的个数是2，那就说明不是获取样式就是批量设置样式
+        if (arguments.length === 2) {
+            // 如果第二个参的数据类型是字符串，那就是获取样式
+            if (typeof attr === 'string') {
+                return getCss(curEle, attr)
+            } else {
+                setGroupCss(curEle, attr)
+            }
+        }
+        // 如果传递的参数是3个，那就是单个设置样式
+        else if (arguments.length === 3) {
+            setCss(curEle, attr, value)
+        }
+
+    }
+</script>
+
+</html>

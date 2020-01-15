@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" style="background-color:red;">111</div>
+    <script>
+        /* 
+        获取css样式
+         */
+        let box = document.getElementById('box')
+        //  console.log(box.style.width)
+
+        // getComputedStyle :获取元素的计算样式属性
+        // 'getComputedStyle' in window // true  他是window的一个属性
+        // 语法： getComputedStyle(元素).属性名
+        // 他获取的值是一个字符串，而且带单位
+        // 他既可以获取行内的样式，还可以获取style样式表的样式
+        // 获取的样式的属性名是遵循驼峰命名法的
+        // console.log(getComputedStyle(box).width) // '200px'
+        // console.log(getComputedStyle(box).backgroundColor) // 'rgb(255, 0, 0)'
+
+        // currentStyle:这个方法是IE浏览器才存在的
+        // 语法：元素.currentStyle.属性名
+
+        /* 
+        封装一个方法，获取css样式
+         */
+        function getCss(curEle, attr) {
+            let val = null;
+            // 考虑兼容，在谷歌下使用getComputedStyle，在IE下使用currentStyle
+            if ('getComputedStyle' in window) {
+                val = getComputedStyle(curEle)[attr]
+            } else {
+                val = curEle.currentStyle[attr]
+            }
+            let reg = /^(width|height|padding|margin|left|right|top|bottom|fontSize|opacity)$/
+            // 把获取的带单位的值的单位去掉，并且转数字
+            if (reg.test(attr)) {
+                val = parseFloat(val);
+            }
+            return val;
+        }
+        console.log(getCss(box, 'opacity'))
+    </script>
+</body>
+
+</html>

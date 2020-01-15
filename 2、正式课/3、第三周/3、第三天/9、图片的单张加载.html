@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 400px;
+            height: 200px;
+            margin: 800px auto;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="./img/default.jpg" true-img='./img/1.jpg' alt="">
+    </div>
+    <script src="./utils.js"></script>
+    <script>
+        let img = document.getElementsByTagName('img')[0];
+
+        /* 
+        图片加载的临界条件：
+        图片的底边 === 当前浏览器可视窗口的底边
+
+        当前图片距离body的上偏移量 + 图片自身的总高度 === 当前浏览器滚动条卷去的高度+但前浏览器可视窗口的高度
+        */
+
+        let imgT = utils.offset(img).top; // 获取图片距离body的上偏移量
+        let imgH = img.offsetHeight; // 获取图片自身的总高度
+        let winH = utils.win('clientHeight'); // 当前浏览器可视窗口的高度
+        function dealy() {
+            if (img.flag) {
+                // 这里是判断当前img有没有加载过，如果加载过，那就会有flag属性，而且属性值是true，此条件就成立
+                // 如果没有加载过，当前img没有flag属性，此条件不成立
+                return;
+            }
+            let winT = utils.win('scrollTop'); // 当前浏览器滚动条卷去的高度
+            // console.log(imgT,imgH,winH,winT)
+            // 如果浏览器的滚动条卷去的高度+浏览器可视窗口的>图片自身高度+图片距离body的上偏移量，就该让图片显示了
+            if (imgT + imgH < winH + winT) {
+                // let address = img.getAttribute('true-img'); // 从img行内拿到图片真实的路径
+                // img.src = address; // 把图片真实的路径赋给src属性
+
+               
+                /* 
+                    图片路径在赋值给img之前得检验一下是否正确
+                        1、获取到图片的真实路径
+                        2、动态创建一个newImg元素
+                        3、把真实路径赋值给newImg元素
+                        4、如果路径是正确的，那newImg的onload的事件就会被触发
+                        5、在onload里给img在赋真实路径就好了
+                */
+                let address = img.getAttribute('true-img'); // 获取图片的真实路径
+                let newImg = document.createElement('img'); 
+                newImg.src = address;
+                newImg.onload = function () {
+                    // 如果给newImg赋值的路径是正确的，那此事件就会执行
+                    // 此函数如果执行，那就说明路径是正确的，现在就可以把路径赋值给img的src属性了
+                    img.src = address;
+                    newImg = null;
+                    img.flag = true; // 当图片加载完成之后，给img元素增加一个flag属性
+                    fadeIn(img)
+                }
+            }
+        }
+        function fadeIn(curImg){
+            // 在这里写图片渐渐显示的代码
+        }
+        window.onscroll = function () {
+            dealy()
+        }
+    </script>
+</body>
+
+</html>

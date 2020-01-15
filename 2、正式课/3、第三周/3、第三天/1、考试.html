@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*         function Fn(n, m) {
+            n = n || 0;
+            m = m || 0;
+            this.x = n;
+            this.y = m;
+            this.getX = function () {
+                console.log(this.x);
+            }
+            return n + m;
+        }
+        Fn.prototype.sum = function () {
+            console.log(this.x + this.y);
+        } // 给当前类的原型增加方法
+        Fn.prototype = { // 原型重定向 constructor __proto__-->Object.prototype
+            getX: function () {
+                // this-->
+                this.x += 1; // this.x = this.x+1   元向上增加属性x：NaN
+                console.log(this.x);
+            },
+            getY: function () {
+                this.y -= 1;
+                console.log(this.y);
+            }
+        };
+        let f1 = new Fn(10, 20);// {x:10,y:20,getX:f}
+        let f2 = new Fn; // {x:0,y:0,getX:f}
+        console.log(f1.getX === f2.getX); // false
+        console.log(f1.getY === f2.getY); // true
+        console.log(f1.__proto__.getY === Fn.prototype.getY); // true
+        console.log(Fn.prototype.getX === f2.getX); // false
+        console.log(f1.constructor); // Object
+        f1.getX(); // 10
+        Fn.prototype.getX(); // NaN
+        f2.getY(); // -1
+        Fn.prototype.getY(); // NaN
+        f1.sum(); // 报错 */
+
+
+        /*         var name = 'WINDOW'; // 'B'
+                function A() {
+                    console.log(1, this.name);
+                    name = this.name;
+                };
+
+                function B() {
+                    name = this.name;
+                    console.log(2, this.name);
+                };
+                A.call(B, 10); // 1, 'B'
+                A.call.call.call(B);// 2,'B'
+
+                 
+                // cotext-->B   this-->call
+                // context.fn = this     B.fn = call
+                // context.fn()      B.fn()    call()
+
+                // 第二次执行call
+                // context--->window    this-->B
+
+                // context.fn = this     window.fn = B
+                // context.fn()          window.fn()   // B()
+                 
+                Function.prototype.call(B); // 啥也不输出
+                Function.prototype.call.call.call(B); // 2, 'B' */
+
+
+
+        // var name = "WINDOW";
+
+        // function fn() {
+        //     console.log(this.name);
+        // };
+        // var obj = {
+        //     name: "OBJ",
+        //     fn: () => {
+        //         console.log(this.name);
+        //     }
+        // };
+        // fn();  // "WINDOW"
+        // obj.fn(); // "WINDOW"
+        // fn.call(obj); // "OBJ"
+        // window.onload = function () { //页面加载完成，事件就会触发
+        //     fn(); // "WINDOW"
+        //     obj.fn();// "WINDOW"
+        // };
+        // fn.bind(obj); // 预处理this
+
+
+
+        /* 
+        print = alert(2);
+        Fn = f
+        */
+        // var print = function () {
+        //     alert(1);
+        // };
+
+        // function Fn() {
+        //     print = function () {
+        //         alert(2);
+        //     };
+        //     return this;
+        // };
+
+        // function print() {
+        //     alert(3);
+        // };
+        // Fn.prototype.print = function () { // 给Fn的原型增加方法
+        //     alert(4);
+        // };
+        // Fn.print = function () { // 把Fn当做对象增加键值对
+        //     alert(5);
+        // };
+
+        // print(); // 1
+        // Fn.print(); // 5
+        // Fn().print(); // window.print() // 2
+        // new Fn.print();  // new f()  5
+        // new Fn().print(); // 实例.print()  4
+
+
+        // function Modal(element) {
+        //     element = element || document;
+        //     this.element = element;
+        // }
+        // Modal.prototype.show = function () {
+        //     this.element.style.display = 'block';
+        // }
+        // Modal.prototype.hide = function () {
+        //     this.element.style.display = 'none';
+        // };
+        // Modal.position = {
+        //     x: 100,
+        //     y: 200
+        // };
+        // Modal.setPosition = function (x, y) {
+        //     this.position = {
+        //         x: x,
+        //         y: y
+        //     };
+        // };
+        // let m = new Model(document.body);
+
+        // class Model {
+        //     constructor(element) {
+        //         element = element || document;
+        //         this.element = element;
+        //     }
+        //     show() {
+        //         // this.element.style.display = 'block';
+        //         this.element.style.background = 'red';
+        //     };
+        //     hide() {
+        //         this.element.style.display = 'none';
+        //     };
+        //     static position = {
+        //         x: 100,
+        //         y: 200
+        //     };
+        //     static setPosition = function (x, y) {
+        //         this.position = {
+        //             x: x,
+        //             y: y
+        //         };
+        //     };
+        // }
+
+        // let m = new Model(document.body); // {element:document.body}
+        // m.show();
+
+        // Array.prototype.unique = function(){
+        //     // this-->当前的实例
+        //     let obj = {};
+        //     for (var i = 0; i < this.length; i++) {
+        //         if(obj[this[i]] !== undefined){
+        //             // 删除
+        //             this[i] = this[this.length-1];
+        //             this.length--;
+        //             i--;
+        //         }
+        //         else {
+        //             obj[this[i]] = this[i] 
+        //         }
+        //     }
+        //     return this
+        // }
+        // // 把方法放到数组的原型上
+        // // 该方法必须return一个去重之后的数组
+
+
+
+        // Function.prototype.changeThis = function changeThis(context,...arg) {
+        //     //=>实现你的代码 
+        //     // context -->obj   this-->fn
+        //     context = context || window;
+        //     let res = null;
+        //     context.fn = this
+        //     res = context.fn(...arg);
+        //     delete  context.fn;
+        //     return res
+        // };
+        // let obj = {
+        //     name: 'Alibaba'
+        // };
+
+        // function fn(x, y) {
+        //     this.total = x + y;
+        //     return this;
+        // }
+        // let res = fn.changeThis(obj, 100, 200); //res => {name:'Alibaba',total:300} 
+
+        function toArray(...arg) { 
+            //实现你的代码 
+            return arg   
+        };
+        toArray(1,2,3,4,5)
+    </script>
+</body>
+
+</html>

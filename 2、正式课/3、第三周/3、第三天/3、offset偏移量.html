@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: rgb(87, 143, 4);
+            margin: 20px auto;
+            position: relative;
+            border: 10px solid orangered;
+        }
+
+        #inter {
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 20px auto;
+            border: 10px solid yellow;
+            position: relative;
+        }
+
+        #center {
+            width: 50px;
+            height: 50px;
+            background: hotpink;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="inter">
+            <div id="center"></div>
+        </div>
+    </div>
+    <script>
+        let box = document.getElementById('box');
+        let inter = document.getElementById('inter');
+        let center = document.getElementById('center');
+        /* 
+        offsetLeft:当前元素相对于父级参照物的左偏移量  是当前元素的左外边框到父级参照物的左内边框的距离
+        offsetTop：当前元素相对于父级参照物的上偏移量   是当前元素的上外边框到父级参照物的上内边框的距离
+        offsetParent：当前元素的父级参照物
+            body的父级参照物是null
+         */
+        /* 
+        元素的父级参照物一般情况在默认都是body，如果给元素增加position属性(absolute,relative,fixed),会让他的所有子孙元素的父级参照物指向当前这个元素
+         */
+        //  console.log(center.offsetParent)
+        //  console.log(inter.offsetParent)
+        // console.log(box.offsetLeft)
+
+        /* 
+        封装一个方法，获取元素距离body的偏移量
+         */
+         function offset(curEle) { // 当前元素
+        let l = curEle.offsetLeft;
+        let t = curEle.offsetTop;
+        let parent = curEle.offsetParent;
+        // 上来先获取一个偏移量和父级参照物
+
+        while (parent !== document.body) {
+            // 检测一下当前元素的父级参照物是否是body，如果不是就累加父级参照的左边框的宽度和父级参照物的偏移量
+            l += parent.clientLeft + parent.offsetLeft;
+            t += parent.clientTop + parent.offsetTop;
+            // 在获取父级参照物的父级参照物，直到获取到body为止
+            parent = parent.offsetParent;
+        }
+        return {
+            left: l,
+            top: t
+        }
+    }
+        console.log(offset(center).left)
+        console.log(box.offsetLeft)
+    </script>
+</body>
+
+</html>

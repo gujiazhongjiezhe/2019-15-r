@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        正则的捕获：
+        match
+        exec
+        replace
+
+        exec:
+        1、返回值是数组，如果捕获不到就是null
+            数组的第一项就是捕获的最大的内容
+            从第二项开始就是从左往右依次分组捕获的内容
+            index:第一次捕获内容的索引
+            input：原字符串
+        正则的懒惰型，
+        取消正则的懒惰型：在正则后加g
+
+        正则的贪婪性
+        取消正则的贪婪性：在量词元字符后面加？
+
+        match：
+            如果正则不加g，那返回值和exec一样
+            如果正则加g，返回值是一个数组，数组里存放的每一次捕获的内容
+            拿不到分组捕获的值
+        replace：
+            传参情况(字符串，字符串)(正则，字符串)(正则，函数)
+         */
+        //  let str = 'ww33ww44ww55';
+        //  let reg = /\d{2}/g;
+
+        //  console.log(reg.exec(str)) // '33'
+        //  console.log(reg.exec(str)) // '44'
+        //  console.log(reg.exec(str)) // '55'
+
+        // let str = '123456';
+        // let reg = /\d+?/g;
+        // console.log(reg.exec(str))
+        // console.log(reg.exec(str))
+        // console.log(reg.exec(str))
+        // console.log(reg.exec(str))
+
+        // let str = '{3}ww{x}';
+        // let reg = /\{(?:\d|[a-z])\}/ 
+        // console.log(reg.exec(str)) 
+
+     /*
+        (?:):只匹配不捕获
+        (?=):正向预查
+        (?!):负向预查 
+        ?放在量词元字符的后面是取消正则的贪婪性
+        ():分组的作用
+            提高优先级
+            分组捕获
+            分组引用
+        */
+
+        let str = 'max min';
+        let reg = /\b([a-z])[a-z]*\b/g;
+        str = str.replace(reg,(word,first)=>{
+                first = first.toUpperCase();
+                word = word.slice(1);
+                return first+word
+        })
+        console.log(str)
+    </script>
+</body>
+</html>

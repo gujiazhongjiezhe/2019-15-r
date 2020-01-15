@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #goBack {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: orangered;
+            color: white;
+            font-size: 20px;
+            line-height: 200px;
+            text-align: center;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            cursor: pointer;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="./1.png" alt="">
+        <img src="./1.png" alt="">
+        <img src="./1.png" alt="">
+        <img src="./1.png" alt="">
+        <div id="goBack">回到顶部</div>
+    </div>
+    <script src="./utils.js"></script>
+    <script>
+        let goBack = document.getElementById('goBack');
+        goBack.onclick = function () {
+            // utils.win('scrollTop',0);
+            // 这样回到顶部太快了，太突兀，咱们给他加点过度的效果
+
+
+            /* 
+            可以自定义运行的时间
+            */
+            let winT = utils.win('scrollTop');
+            let cur = winT / 50; // 把滚动条卷去的高度平均分成50份 ,每20毫秒就累减一次，1秒钟正好累减到0
+            var timer = setInterval(() => {
+                winT -= cur; // 定时器每执行一次，就让滚动条卷去的高度累减1/50
+                if (winT <= 0) {
+                    clearInterval(timer);
+                }
+                utils.win('scrollTop', winT);
+            }, 20)
+        }
+
+
+        let winH = utils.win('clientHeight'); // 浏览器可视窗口的高度
+        window.onscroll = function () {
+            // 当前窗口的滚动条一旦滑动，此事件就会被触发
+            let winT = utils.win('scrollTop'); // 当前浏览器滚动条卷去的高度
+            //    当浏览器滚动条卷去的高度大于等于当前屏幕(可视窗口)的高度时，让回到顶部显示
+            if (winT > winH) {
+                utils.css(goBack, 'opacity', 1);
+            } else {
+                utils.css(goBack, 'opacity', 0);
+            }
+        }
+    </script>
+</body>
+
+</html>
