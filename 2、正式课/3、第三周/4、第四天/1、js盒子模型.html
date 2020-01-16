@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        1、clientWidth：可视区域的宽度     width+左右padding
+        2、clientHeight：可视区域的高度     width+上下padding
+        3、clientTop：上边框的高度
+        4、clientLeft：做边框的宽度
+
+        5、offsetWidth
+        6、offsetHeight
+        7、offsetLeft
+        8、offsetTop
+        9、offsetParent
+
+        10、scrollHeight：
+        11、scrollWidth：
+
+        以上都是可读属性
+        以下是可读可写属性
+        12、scrollTop：
+        13、scrollLeft
+         */
+
+         function offset(curEle){
+            let l = curEle.offsetLeft;
+            let t = curEle.offsetTop;
+            let parent = curEle.offsetParent;
+            while(parant !==document.body){
+                l+=parent.clientLeft+parent.offsetLeft;
+                t+=parent.clientTop+parent.offsetTop;
+                parent = parent.offsetParent
+            }
+            return {left:l,top:t}
+         }
+    </script>
+</body>
+</html>

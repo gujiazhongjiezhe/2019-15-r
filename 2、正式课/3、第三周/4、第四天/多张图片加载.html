@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 500px;
+            margin: 500px auto;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="./img/default.jpg" true-img='./img/1.jpg' alt="">
+        <img src="./img/default.jpg" true-img='./img/2.jpg' alt="">
+        <img src="./img/default.jpg" true-img='./img/3.jpg' alt="">
+        <img src="./img/default.jpg" true-img='./img/4.jpg' alt="">
+    </div>
+    <script src="./utils.js"></script>
+    <script>
+        let imgs = document.getElementsByTagName('img');
+
+        function dealy(){
+            for (var i = 0; i < imgs.length; i++) {
+                // imgs[i] // 代表每一张图片
+                dealyImg(imgs[i]) // 此方法检测当前图片是否需要加载
+            }
+        }
+        function dealyImg(curImg){
+            if(curImg.flag){
+                return
+            }
+            // 检测图片是否需要加载
+            let curImgH = curImg.offsetHeight;
+            let curImgT = utils.offset(curImg).t
+            let winH = utils.win('clientHeight');
+            let winT = utils.win('scrollTop');
+            // console.log(curImgH,curImgT,winH,winT);
+            if(winH+winT>curImgH+curImgT){
+                let address = curImg.getAttribute('true-img');
+                
+                let newImg = new Image;
+                newImg.src = address;
+                newImg.onload = function(){
+                    curImg.src = address;
+                    newImg = null;
+                    curImg.flag = true;
+                    fadeIn(curImg)
+                }
+            }
+        }
+        function fadeIn(curImg){
+            utils.css(curImg,'opacity',0.01);
+            let cur = utils.css(curImg,'opacity');
+            var timer  =setInterval(()=>{
+                cur+=0.05;
+                if(cur>=1){
+                    clearInterval(timer);
+                }
+                utils.css(curImg,'opacity',cur);
+            },200)
+        }
+        dealy() // 防止当前第一屏的图片不加载
+        window.onscroll  =function(){
+            dealy()
+        }
+    </script>
+</body>
+
+</html>
